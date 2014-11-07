@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>209200D8-5370-4E69-B690-796F266BBB96</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Cilent</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>4DD35213EB3EFD01B884408377F73B85675FA01C</key>
+		<string>https://github.com/penneyworth1/cilent.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Cilent/Cilent.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>4DD35213EB3EFD01B884408377F73B85675FA01C</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/penneyworth1/cilent.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>4DD35213EB3EFD01B884408377F73B85675FA01C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4DD35213EB3EFD01B884408377F73B85675FA01C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>xcodeProjects</string>
+		</dict>
+	</array>
+</dict>
+</plist>
