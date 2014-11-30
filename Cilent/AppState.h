@@ -19,6 +19,8 @@
 @property UIColor* buttonTextColor;
 @property UIFont* buttonFont;
 @property UIFont* tinyFont;
+@property double currentLatitude;
+@property double currentLongitude;
 
 +(id)getInstance;
 

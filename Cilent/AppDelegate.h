@@ -12,12 +12,11 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 {
     TutorialPageViewController* tutorialPageViewController;
+    CLLocationManager* locationManager;
 }
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController *navController;
-
-@property (strong, nonatomic) CLLocationManager* locationManager;
 
 @end
 

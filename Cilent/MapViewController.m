@@ -23,25 +23,35 @@
     mainMapView = [[MKMapView alloc] initWithFrame:appState.screenRect];
     mainMapView.delegate = self;
     [self.view addSubview:mainMapView];
+    mainMapView.showsUserLocation = YES;
+    
+    vSearchBar = [ViewUtil getRoundedBox:11 :30 :appState.screenWidth-21 :48 :[UIColor whiteColor] :4 :true];
+    [self.view addSubview:vSearchBar];
+    btnSearch = [ViewUtil getButton:22 :41 :28 :28 :[UIColor clearColor] :@"" :appState.buttonTextColor :appState.buttonFont :0 :@"SearchGlass" :false :0 :0 :0 :0];
+    [btnSearch addTarget:self action:@selector(searchButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btnSearch];
+    btnClearSearch = [ViewUtil getButton:appState.screenWidth-49 :41 :28 :28 :[UIColor clearColor] :@"" :appState.buttonTextColor :appState.buttonFont :0 :@"BlackX" :false :0 :0 :0 :0];
+    [btnClearSearch addTarget:self action:@selector(clearSearchPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btnClearSearch];
+    tfSearch = [ViewUtil getTextField:62 :34 :appState.screenWidth-120 :40 :[UIColor whiteColor] :2.0f];
+    tfSearch.delegate = self;
+    [self.view addSubview:tfSearch];
     
     spinner = [ViewUtil getLoadingSpinner:appState.screenWidth/2-25 :appState.screenHeight/2-25 :50 :50 :[UIColor grayColor] :8];
     request = [[MKLocalSearchRequest alloc] init];
     
-    btnSearch = [ViewUtil getButton:appState.screenWidth/2+5 :appState.screenHeight-100 :appState.screenWidth/2-15 :60 :appState.buttonBgColor :@"Search" :appState.buttonTextColor :appState.buttonFont :8];
-    [self.view addSubview:btnSearch];
-    [btnSearch addTarget:self action:@selector(searchButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    
-    btnMarkCurrentLocation = [ViewUtil getButton:10 :appState.screenHeight-100 :appState.screenWidth/2-15 :60 :appState.buttonBgColor :@"Mark Current Location" :appState.buttonTextColor :appState.buttonFont :8];
+    btnMarkCurrentLocation = [ViewUtil getButton:appState.screenWidth-50 :appState.screenHeight-50 :40 :40 :[UIColor whiteColor] :@"Current Location" :appState.buttonTextColor :appState.buttonFont :8 :@"Arrow" :true :8 :8 :8 :8];
     [self.view addSubview:btnMarkCurrentLocation];
-    [btnMarkCurrentLocation addTarget:self action:@selector(markCurrentLocationButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [btnMarkCurrentLocation addTarget:self action:@selector(currentLocationButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     
-    avSearch = [[UIAlertView alloc]initWithTitle:@"Search For Places" message:@"Please enter an address or keyword." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
-    avSearch.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [avSearch textFieldAtIndex:0].delegate = self;
+//    avSearch = [[UIAlertView alloc]initWithTitle:@"Search For Places" message:@"Please enter an address or keyword." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+//    avSearch.alertViewStyle = UIAlertViewStylePlainTextInput;
+//    [avSearch textFieldAtIndex:0].delegate = self;
     
-    avMarkCurrentLocation = [[UIAlertView alloc]initWithTitle:@"Mark Current Location" message:@"Please enter a name for this location." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+    avMarkCurrentLocation = [[UIAlertView alloc]initWithTitle:@"Add Location" message:@"Please enter a name for this location." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
     avMarkCurrentLocation.alertViewStyle = UIAlertViewStylePlainTextInput;
     [avMarkCurrentLocation textFieldAtIndex:0].delegate = self;
+    
     
     
 }
@@ -60,13 +70,13 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if([alertView isEqual:avSearch])
-    {
-        if(buttonIndex == 1) //Ok pressed on the search dialog.
-            [self searchEntered];
-        
-    }
-    else if([alertView isEqual:avMarkCurrentLocation])
+//    if([alertView isEqual:avSearch])
+//    {
+//        if(buttonIndex == 1) //Ok pressed on the search dialog.
+//            [self searchEntered];
+//        
+//    }
+    if([alertView isEqual:avMarkCurrentLocation])
     {
         
     }
@@ -80,7 +90,7 @@
     customPinView.animatesDrop = YES;
     customPinView.canShowCallout = YES;
     
-    UIButton* rightButton = [ViewUtil getButton:0 :0 :30 :30 :[UIColor greenColor] :@"+" :[UIColor blackColor] :appState.buttonFont :15];
+    UIButton* rightButton = [ViewUtil getButton:0 :0 :30 :30 :[UIColor greenColor] :@"+" :[UIColor blackColor] :appState.buttonFont :15 :nil :false :0 :0 :0 :0];
     [rightButton addTarget:self
                     action:@selector(annotationButtonPressed)
           forControlEvents:UIControlEventTouchUpInside];
@@ -91,7 +101,7 @@
 
 -(void)annotationButtonPressed
 {
-
+    [avMarkCurrentLocation show];
 }
 
 -(void)searchEntered
@@ -129,19 +139,31 @@
     }];
 }
 
--(void)searchButtonPressed
+-(void)clearSearchPressed
 {
-    [avSearch show];
+    [tfSearch setText:@""];
 }
 
--(void)markCurrentLocationButtonPressed
+-(void)searchButtonPressed
 {
-    [avMarkCurrentLocation show];
+    mainMapView.showsUserLocation = NO;
+    [self searchEntered];
+}
+
+-(void)currentLocationButtonPressed
+{
+    [mainMapView removeAnnotations:mainMapView.annotations];
+    mainMapView.showsUserLocation = YES;
+    [mainMapView setCenterCoordinate:mainMapView.userLocation.location.coordinate animated:YES];
+    [mainMapView selectAnnotation:mainMapView.userLocation animated:YES];
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString
 {
-    request.naturalLanguageQuery = [textField.text stringByReplacingCharactersInRange:range withString:replacementString];
+    if(textField == tfSearch)
+    {
+        request.naturalLanguageQuery = [textField.text stringByReplacingCharactersInRange:range withString:replacementString];
+    }
     
     return YES;
 }
@@ -162,6 +184,12 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES]; //Dismiss keyboard
+    [super touchesBegan:touches withEvent:event];
 }
 
 @end

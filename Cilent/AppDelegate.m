@@ -36,6 +36,16 @@
     pageControl.pageIndicatorTintColor = [UIColor blackColor];
     pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
     
+    if([CLLocationManager locationServicesEnabled])
+    {
+        locationManager = [[CLLocationManager alloc] init];
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        locationManager.delegate = self;
+        [locationManager requestAlwaysAuthorization];
+        locationManager.pausesLocationUpdatesAutomatically = NO;
+        [locationManager startMonitoringSignificantLocationChanges];
+    }
+    
     return YES;
 }
 
@@ -44,16 +54,20 @@
     NSLog(@"fail");
 }
 
-- (void)locationManager:(CLLocationManager *)manager
-     didUpdateLocations:(NSArray *)locations
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    NSLog(@"nothing");
+    AppState* appState = [AppState getInstance];
+    for(CLLocation* loc in locations)
+    {
+        appState.currentLatitude = loc.coordinate.latitude;
+        appState.currentLongitude = loc.coordinate.longitude;
+    }
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
-    NSLog(@"%f - %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-}
+//- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+//{
+//    NSLog(@"%f - %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+//}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -74,14 +88,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    if([CLLocationManager locationServicesEnabled])
-    {
-        _locationManager = [[CLLocationManager alloc] init];
-        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        _locationManager.delegate = self;
-        [_locationManager requestAlwaysAuthorization];
-        [_locationManager startUpdatingLocation];
-    }
+    
     
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }

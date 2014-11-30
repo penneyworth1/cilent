@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D30ACEDF1A2BB11F00452B92 /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D30ACED51A2BB11F00452B92 /* Arrow.png */; };
+		D30ACEE01A2BB11F00452B92 /* BlackCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = D30ACED61A2BB11F00452B92 /* BlackCheck.png */; };
+		D30ACEE11A2BB11F00452B92 /* BlackX.png in Resources */ = {isa = PBXBuildFile; fileRef = D30ACED71A2BB11F00452B92 /* BlackX.png */; };
+		D30ACEE21A2BB11F00452B92 /* Map.png in Resources */ = {isa = PBXBuildFile; fileRef = D30ACED81A2BB11F00452B92 /* Map.png */; };
+		D30ACEE31A2BB11F00452B92 /* MenuAbout.png in Resources */ = {isa = PBXBuildFile; fileRef = D30ACED91A2BB11F00452B92 /* MenuAbout.png */; };
+		D30ACEE41A2BB11F00452B92 /* MenuHome.png in Resources */ = {isa = PBXBuildFile; fileRef = D30ACEDA1A2BB11F00452B92 /* MenuHome.png */; };
+		D30ACEE51A2BB11F00452B92 /* MenuMap.png in Resources */ = {isa = PBXBuildFile; fileRef = D30ACEDB1A2BB11F00452B92 /* MenuMap.png */; };
+		D30ACEE61A2BB11F00452B92 /* MenuSetting.png in Resources */ = {isa = PBXBuildFile; fileRef = D30ACEDC1A2BB11F00452B92 /* MenuSetting.png */; };
+		D30ACEE71A2BB11F00452B92 /* RightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D30ACEDD1A2BB11F00452B92 /* RightArrow.png */; };
+		D30ACEE81A2BB11F00452B92 /* SearchGlass.png in Resources */ = {isa = PBXBuildFile; fileRef = D30ACEDE1A2BB11F00452B92 /* SearchGlass.png */; };
 		D394945B19FD6D1900E32FFC /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D394945A19FD6D1900E32FFC /* CoreFoundation.framework */; };
 		D396548119F34A800059F2E7 /* AppState.m in Sources */ = {isa = PBXBuildFile; fileRef = D396548019F34A800059F2E7 /* AppState.m */; };
 		D398F30319F4C447002F6340 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D398F30219F4C447002F6340 /* MapViewController.m */; };
@@ -33,6 +43,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D30ACED51A2BB11F00452B92 /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Arrow.png; sourceTree = "<group>"; };
+		D30ACED61A2BB11F00452B92 /* BlackCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlackCheck.png; sourceTree = "<group>"; };
+		D30ACED71A2BB11F00452B92 /* BlackX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlackX.png; sourceTree = "<group>"; };
+		D30ACED81A2BB11F00452B92 /* Map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Map.png; sourceTree = "<group>"; };
+		D30ACED91A2BB11F00452B92 /* MenuAbout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuAbout.png; sourceTree = "<group>"; };
+		D30ACEDA1A2BB11F00452B92 /* MenuHome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuHome.png; sourceTree = "<group>"; };
+		D30ACEDB1A2BB11F00452B92 /* MenuMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuMap.png; sourceTree = "<group>"; };
+		D30ACEDC1A2BB11F00452B92 /* MenuSetting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuSetting.png; sourceTree = "<group>"; };
+		D30ACEDD1A2BB11F00452B92 /* RightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RightArrow.png; sourceTree = "<group>"; };
+		D30ACEDE1A2BB11F00452B92 /* SearchGlass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchGlass.png; sourceTree = "<group>"; };
 		D394945A19FD6D1900E32FFC /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		D396547F19F34A800059F2E7 /* AppState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppState.h; sourceTree = "<group>"; };
 		D396548019F34A800059F2E7 /* AppState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppState.m; sourceTree = "<group>"; };
@@ -55,6 +75,7 @@
 		D3A0A26119EB1EA6005E3133 /* TutorialPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialPageViewController.m; sourceTree = "<group>"; };
 		D3A0A26419EB25BB005E3133 /* TutorialChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialChildViewController.h; sourceTree = "<group>"; };
 		D3A0A26519EB25BB005E3133 /* TutorialChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialChildViewController.m; sourceTree = "<group>"; };
+		D3B92AC61A0FEA0300E7A775 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		D3F2F83919FD6BAC00636550 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -79,6 +100,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D30ACED41A2BB0F800452B92 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				D30ACED51A2BB11F00452B92 /* Arrow.png */,
+				D30ACED61A2BB11F00452B92 /* BlackCheck.png */,
+				D30ACED71A2BB11F00452B92 /* BlackX.png */,
+				D30ACED81A2BB11F00452B92 /* Map.png */,
+				D30ACED91A2BB11F00452B92 /* MenuAbout.png */,
+				D30ACEDA1A2BB11F00452B92 /* MenuHome.png */,
+				D30ACEDB1A2BB11F00452B92 /* MenuMap.png */,
+				D30ACEDC1A2BB11F00452B92 /* MenuSetting.png */,
+				D30ACEDD1A2BB11F00452B92 /* RightArrow.png */,
+				D30ACEDE1A2BB11F00452B92 /* SearchGlass.png */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 		D398F30019F4C0E0002F6340 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +129,7 @@
 		D398F30619F4CBA1002F6340 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3B92AC61A0FEA0300E7A775 /* MediaPlayer.framework */,
 				D394945A19FD6D1900E32FFC /* CoreFoundation.framework */,
 				D3F2F83919FD6BAC00636550 /* CoreLocation.framework */,
 				D398F30419F4CB81002F6340 /* MapKit.framework */,
@@ -101,6 +140,7 @@
 		D3A0A22E19EAD864005E3133 = {
 			isa = PBXGroup;
 			children = (
+				D30ACED41A2BB0F800452B92 /* Assets */,
 				D3A0A23919EAD864005E3133 /* Cilent */,
 				D3A0A25319EAD864005E3133 /* CilentTests */,
 				D398F30619F4CBA1002F6340 /* Frameworks */,
@@ -259,8 +299,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D30ACEE21A2BB11F00452B92 /* Map.png in Resources */,
+				D30ACEE31A2BB11F00452B92 /* MenuAbout.png in Resources */,
+				D30ACEE01A2BB11F00452B92 /* BlackCheck.png in Resources */,
 				D3A0A24B19EAD864005E3133 /* LaunchScreen.xib in Resources */,
+				D30ACEE51A2BB11F00452B92 /* MenuMap.png in Resources */,
 				D3A0A24819EAD864005E3133 /* Images.xcassets in Resources */,
+				D30ACEE81A2BB11F00452B92 /* SearchGlass.png in Resources */,
+				D30ACEE71A2BB11F00452B92 /* RightArrow.png in Resources */,
+				D30ACEE41A2BB11F00452B92 /* MenuHome.png in Resources */,
+				D30ACEE11A2BB11F00452B92 /* BlackX.png in Resources */,
+				D30ACEDF1A2BB11F00452B92 /* Arrow.png in Resources */,
+				D30ACEE61A2BB11F00452B92 /* MenuSetting.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,11 +450,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Maaz Kamani (A689T2Y9B6)";
 				INFOPLIST_FILE = Cilent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "62430c4a-75c0-49f7-9149-cfc35848718c";
 			};
 			name = Debug;
 		};
@@ -412,11 +463,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Maaz Kamani (GZE5TX6NML)";
 				INFOPLIST_FILE = Cilent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0bf77165-9a1b-4eb8-b651-5d20a58a29fa";
 			};
 			name = Release;
 		};

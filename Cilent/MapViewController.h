@@ -17,12 +17,17 @@
     UIActivityIndicatorView *spinner;
     AppState* appState;
     UIButton* btnMarkCurrentLocation;
-    UIButton* btnSearch;
-    UIAlertView* avSearch;
+    //UIAlertView* avSearch;
     UIAlertView* avMarkCurrentLocation;
     NSString* searchPhrase;
     MKLocalSearchRequest *request;
-   
+    
+    UIView* vSearchBar;
+    UIView* vSearchBarShadow;
+    UIButton* btnSearch;
+    UIButton* btnClearSearch;
+    UITextField* tfSearch;
+    
 }
 
 
