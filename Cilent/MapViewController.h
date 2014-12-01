@@ -28,6 +28,13 @@
     UIButton* btnClearSearch;
     UITextField* tfSearch;
     
+    UIButton* btnMenuTab;
+    UIView* vMenuTabBar1;
+    UIView* vMenuTabBar2;
+    UIView* vMenuTabBar3;
+    bool menuOpen;
+    UIView* vMenuBg;
+    
 }
 
 

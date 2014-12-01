@@ -19,6 +19,7 @@
     [super viewDidLoad];
     appState = [AppState getInstance];
     searchPhrase = @"Library";
+    menuOpen = false;
     
     mainMapView = [[MKMapView alloc] initWithFrame:appState.screenRect];
     mainMapView.delegate = self;
@@ -52,7 +53,20 @@
     avMarkCurrentLocation.alertViewStyle = UIAlertViewStylePlainTextInput;
     [avMarkCurrentLocation textFieldAtIndex:0].delegate = self;
     
-    
+    btnMenuTab = [ViewUtil getButton:-10 :appState.screenHeight-50 :50 :40 :[UIColor whiteColor] :@"" :[UIColor blackColor] :appState.buttonFont :8 :nil :true :0 :0 :0 :0];
+    [btnMenuTab addTarget:self action:@selector(menuTabPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btnMenuTab];
+    vMenuTabBar1 = [ViewUtil getRoundedBox:0 :5.7 :44 :5.7 :[UIColor blackColor] :2.85 :false];
+    [vMenuTabBar1 setUserInteractionEnabled:NO];
+    [btnMenuTab addSubview:vMenuTabBar1];
+    vMenuTabBar2 = [ViewUtil getRoundedBox:0 :17.1 :44 :5.7 :[UIColor blackColor] :2.85 :false];
+    [vMenuTabBar2 setUserInteractionEnabled:NO];
+    [btnMenuTab addSubview:vMenuTabBar2];
+    vMenuTabBar3 = [ViewUtil getRoundedBox:0 :28.6 :44 :5.7 :[UIColor blackColor] :2.85 :false];
+    [vMenuTabBar3 setUserInteractionEnabled:NO];
+    [btnMenuTab addSubview:vMenuTabBar3];
+    vMenuBg = [ViewUtil getRoundedBox:-210 :appState.screenHeight/3 :200 :2*appState.screenHeight/3 :[UIColor blackColor] :12 :true];
+    [self.view addSubview:vMenuBg];
     
 }
 
@@ -61,7 +75,29 @@
     
 }
 
+-(void)menuTabPressed
+{
+    if(menuOpen)
+    {
+        [self performTranlateAnimation:vMenuBg :-200 :0];
+        [self performTranlateAnimation:btnMenuTab :-190 :0];
+        menuOpen = false;
+    }
+    else
+    {
+        [self performTranlateAnimation:vMenuBg :200 :0];
+        [self performTranlateAnimation:btnMenuTab :190 :0];
+        menuOpen = true;
+    }
+}
 
+-(void)performTranlateAnimation:(UIView*)view :(float)tx :(float)ty
+{
+    CGAffineTransform theTransform = CGAffineTransformTranslate(view.transform, tx, ty);
+    [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        view.transform = theTransform;
+    } completion:^(BOOL finished){ }];
+}
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
@@ -189,6 +225,8 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES]; //Dismiss keyboard
+    if(menuOpen)
+        [self menuTabPressed];
     [super touchesBegan:touches withEvent:event];
 }
 

@@ -63,12 +63,6 @@
     if(dropShadow)
     {
         [ViewUtil addDropShadow:vBox];
-//        UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:vBox.bounds];
-//        vBox.layer.masksToBounds = NO;
-//        vBox.layer.shadowColor = [UIColor blackColor].CGColor;
-//        vBox.layer.shadowOffset = CGSizeMake(-1.0f, 3.0f);
-//        vBox.layer.shadowOpacity = 0.5f;
-//        vBox.layer.shadowPath = shadowPath.CGPath;
     }
     
     return vBox;
@@ -106,7 +100,7 @@
     UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:view.bounds];
     view.layer.masksToBounds = NO;
     view.layer.shadowColor = [UIColor blackColor].CGColor;
-    view.layer.shadowOffset = CGSizeMake(-1.0f, 3.0f);
+    view.layer.shadowOffset = CGSizeMake(2.0f, 3.0f);
     view.layer.shadowOpacity = 0.5f;
     view.layer.shadowPath = shadowPath.CGPath;
 }
