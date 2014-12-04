@@ -45,14 +45,11 @@
     [self.view addSubview:btnMarkCurrentLocation];
     [btnMarkCurrentLocation addTarget:self action:@selector(currentLocationButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     
-//    avSearch = [[UIAlertView alloc]initWithTitle:@"Search For Places" message:@"Please enter an address or keyword." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
-//    avSearch.alertViewStyle = UIAlertViewStylePlainTextInput;
-//    [avSearch textFieldAtIndex:0].delegate = self;
-    
     avMarkCurrentLocation = [[UIAlertView alloc]initWithTitle:@"Add Location" message:@"Please enter a name for this location." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
     avMarkCurrentLocation.alertViewStyle = UIAlertViewStylePlainTextInput;
     [avMarkCurrentLocation textFieldAtIndex:0].delegate = self;
     
+    //Menu
     btnMenuTab = [ViewUtil getButton:-10 :appState.screenHeight-50 :50 :40 :[UIColor whiteColor] :@"" :[UIColor blackColor] :appState.buttonFont :8 :nil :true :0 :0 :0 :0];
     [btnMenuTab addTarget:self action:@selector(menuTabPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnMenuTab];
@@ -65,9 +62,63 @@
     vMenuTabBar3 = [ViewUtil getRoundedBox:0 :28.6 :44 :5.7 :[UIColor blackColor] :2.85 :false];
     [vMenuTabBar3 setUserInteractionEnabled:NO];
     [btnMenuTab addSubview:vMenuTabBar3];
-    vMenuBg = [ViewUtil getRoundedBox:-210 :appState.screenHeight/3 :200 :2*appState.screenHeight/3 :[UIColor blackColor] :12 :true];
+    vMenuBg = [ViewUtil getRoundedBox:-240 :0 :240 :3*appState.screenHeight :[UIColor whiteColor] :0 :true];
     [self.view addSubview:vMenuBg];
+    btnHomeIcon = [ViewUtil getButton:50 :30 :40 :40 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"MenuHome" :false :0 :0 :0 :0];
+    [vMenuBg addSubview:btnHomeIcon];
+    btnHomeText = [ViewUtil getButton:100 :30 :120 :40 :[UIColor clearColor] :@"Home" :[UIColor blackColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
+    [vMenuBg addSubview:btnHomeText];
+    btnMyPlacesIcon = [ViewUtil getButton:50 :90 :40 :40 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"Map" :false :0 :0 :0 :0];
+    [btnMyPlacesIcon addTarget:self action:@selector(showMyPlacesDialog) forControlEvents:UIControlEventTouchUpInside];
+    [vMenuBg addSubview:btnMyPlacesIcon];
+    btnMyPlacesText = [ViewUtil getButton:100 :90 :120 :40 :[UIColor clearColor] :@"My Places" :[UIColor blackColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
+    [btnMyPlacesText addTarget:self action:@selector(showMyPlacesDialog) forControlEvents:UIControlEventTouchUpInside];
+    [vMenuBg addSubview:btnMyPlacesText];
+    btnSettingsIcon = [ViewUtil getButton:50 :150 :40 :40 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"MenuSetting" :false :0 :0 :0 :0];
+    [vMenuBg addSubview:btnSettingsIcon];
+    btnSettingsText = [ViewUtil getButton:100 :150 :120 :40 :[UIColor clearColor] :@"Settings" :[UIColor blackColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
+    [vMenuBg addSubview:btnSettingsText];
+    btnAboutIcon = [ViewUtil getButton:50 :210 :40 :40 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"MenuAbout" :false :0 :0 :0 :0];
+    [vMenuBg addSubview:btnAboutIcon];
+    btnAboutText = [ViewUtil getButton:100 :210 :120 :40 :[UIColor clearColor] :@"About" :[UIColor blackColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
+    [vMenuBg addSubview:btnAboutText];
+    btnSendFeedbackIcon = [ViewUtil getButton:50 :270 :40 :40 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"RightArrow" :false :0 :0 :0 :0];
+    [vMenuBg addSubview:btnSendFeedbackIcon];
+    btnSendFeedbackText = [ViewUtil getButton:100 :270 :120 :40 :[UIColor clearColor] :@"Send Feedback" :[UIColor blackColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
+    [vMenuBg addSubview:btnSendFeedbackText];
+    btnHelpUsGrowIcon = [ViewUtil getButton:50 :330 :40 :40 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"RightArrow" :false :0 :0 :0 :0];
+    [vMenuBg addSubview:btnHelpUsGrowIcon];
+    btnHelpUsGrowText = [ViewUtil getButton:100 :330 :120 :40 :[UIColor clearColor] :@"Help Us Grow" :[UIColor blackColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
+    [vMenuBg addSubview:btnHelpUsGrowText];
+    btnUpgradeToPro = [ViewUtil getButton:50 :390 :180 :40 :[UIColor lightGrayColor] :@"Upgrade To Pro" :[UIColor blackColor] :appState.buttonFont :8 :nil :false :0 :0 :0 :0];
+    [vMenuBg addSubview:btnUpgradeToPro];
     
+    //My places dialog
+    vMyPlacesBg = [ViewUtil getRoundedBox:appState.screenWidth/2-100 :appState.screenHeight/2-150 :200 :300 :[UIColor whiteColor] :8 :true];
+    vMyPlacesBg.hidden = true;
+    [self.view addSubview:vMyPlacesBg];
+    btnCloseMyPlaces = [ViewUtil getButton:162 :10 :28 :28 :[UIColor clearColor] :@"" :appState.buttonTextColor :appState.buttonFont :0 :@"BlackX" :false :0 :0 :0 :0];
+    [btnCloseMyPlaces addTarget:self action:@selector(closeMyPlacesDialog) forControlEvents:UIControlEventTouchUpInside];
+    [vMyPlacesBg addSubview:btnCloseMyPlaces];
+    tblMyPlaces = [[UITableView alloc] initWithFrame:CGRectMake(5, 45, vMyPlacesBg.frame.size.width-10, vMyPlacesBg.frame.size.height-50)];
+    tblMyPlaces.delegate = self;
+    tblMyPlaces.dataSource = self;
+    [vMyPlacesBg addSubview:tblMyPlaces];
+}
+
+-(void)showMyPlacesDialog
+{
+    vMyPlacesBg.hidden = NO;
+    vMyPlacesBg.transform = CGAffineTransformScale(CGAffineTransformIdentity, .01, .01);
+    [self performScaleAnimation:vMyPlacesBg :1 :1 : ^void(BOOL finished) {} ];
+}
+-(void)closeMyPlacesDialog
+{
+    void (^completionBlock)(BOOL) = ^void(BOOL finished)
+    {
+        vMyPlacesBg.hidden = YES;
+    };
+    [self performScaleAnimation:vMyPlacesBg :.01 :.01 :completionBlock];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -79,8 +130,8 @@
 {
     if(menuOpen)
     {
-        [self performTranlateAnimation:vMenuBg :-200 :0];
-        [self performTranlateAnimation:btnMenuTab :-190 :0];
+        [self performTranlateAnimation:vMenuBg :0 :0];
+        [self performTranlateAnimation:btnMenuTab :0 :0];
         menuOpen = false;
     }
     else
@@ -93,31 +144,53 @@
 
 -(void)performTranlateAnimation:(UIView*)view :(float)tx :(float)ty
 {
-    CGAffineTransform theTransform = CGAffineTransformTranslate(view.transform, tx, ty);
+    CGAffineTransform theTransform = CGAffineTransformTranslate(CGAffineTransformIdentity, tx, ty);
     [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         view.transform = theTransform;
     } completion:^(BOOL finished){ }];
 }
-
-- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+-(void)performScaleAnimation:(UIView*)view :(float)sx :(float)sy :(void (^)(BOOL finished))completionBlock
 {
-    request.region = mapView.region;
+    CGAffineTransform theTransform = CGAffineTransformScale(CGAffineTransformIdentity, sx, sy);
+    [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        view.transform = theTransform;
+    } completion:completionBlock];
 }
 
+
+-(void)annotationButtonPressed
+{
+    UITextField *tfPlaceName = [avMarkCurrentLocation textFieldAtIndex:0];
+    if(appState.selectedPlaceName != nil)
+        tfPlaceName.text = appState.selectedPlaceName;
+    [avMarkCurrentLocation show];
+}
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-//    if([alertView isEqual:avSearch])
-//    {
-//        if(buttonIndex == 1) //Ok pressed on the search dialog.
-//            [self searchEntered];
-//        
-//    }
     if([alertView isEqual:avMarkCurrentLocation])
     {
-        
+        if(buttonIndex == 1) //The "ok" button.
+        {
+            NSString* placeName = [alertView textFieldAtIndex:0].text;
+            NSString* trimmedPlaceName = [placeName stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            if(trimmedPlaceName.length > 0)
+            {
+                //NSLog(appState.selectedPlaceName);
+                Place* newPlace = [[Place alloc] init];
+                newPlace.latitude = appState.selectedLatitude;
+                newPlace.longitude = appState.selectedLongitude;
+                newPlace.name = trimmedPlaceName;
+                
+                NSMutableArray* currentPlaces = [appState getMyPlaces];
+                [currentPlaces addObject:newPlace];
+                [appState updateMyPlaces:currentPlaces];
+                [tblMyPlaces reloadData];
+            }
+        }
     }
 }
 
+//MapView delegate methods
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     static NSString* AnnotationIdentifier = @"AnnotationIdentifier";
@@ -134,11 +207,57 @@
     
     return customPinView;
 }
-
--(void)annotationButtonPressed
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-    [avMarkCurrentLocation show];
+    appState.selectedLatitude = view.annotation.coordinate.latitude;
+    appState.selectedLongitude = view.annotation.coordinate.longitude;
+    appState.selectedPlaceName = view.annotation.title;
 }
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+    request.region = mapView.region;
+}
+
+//Tableview dataSource methods
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if(tableView == tblMyPlaces)
+    {
+        return ((NSMutableArray*)[appState getMyPlaces]).count;
+    }
+    else
+    {
+        return 0;
+    }
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil)
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    
+    cell.backgroundView = [[UIView alloc] init];
+    [cell.backgroundView setBackgroundColor:[UIColor clearColor]];
+    //[[[cell contentView] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    if (tableView == tblMyPlaces)
+    {
+        Place* currentPlace = (Place*)[[appState getMyPlaces] objectAtIndex:indexPath.row];
+        
+        cell.textLabel.text = currentPlace.name;
+    }
+    else
+    {
+        cell.textLabel.text = [NSString stringWithFormat:@"Cell %d", indexPath.row + 1];
+    }
+    
+    return cell;
+}
+
+
+
 
 -(void)searchEntered
 {
@@ -147,7 +266,7 @@
     
     MKLocalSearch *search = [[MKLocalSearch alloc] initWithRequest:request];
     [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
-        NSLog(@"Map Items: %@", response.mapItems);
+        //NSLog(@"Map Items: %@", response.mapItems);
         
         NSMutableArray *annotations = [NSMutableArray array];
         

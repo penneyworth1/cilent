@@ -61,6 +61,8 @@
     {
         appState.currentLatitude = loc.coordinate.latitude;
         appState.currentLongitude = loc.coordinate.longitude;
+        
+        //NSLog(@"location update");
     }
 }
 

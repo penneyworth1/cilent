@@ -10,14 +10,14 @@
 #import <MapKit/MapKit.h>
 #import "AppState.h"
 #import "ViewUtil.h"
+#import "Place.h"
 
-@interface MapViewController : UIViewController <MKMapViewDelegate, UITextFieldDelegate, UIAlertViewDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     MKMapView * mainMapView;
     UIActivityIndicatorView *spinner;
     AppState* appState;
     UIButton* btnMarkCurrentLocation;
-    //UIAlertView* avSearch;
     UIAlertView* avMarkCurrentLocation;
     NSString* searchPhrase;
     MKLocalSearchRequest *request;
@@ -34,7 +34,23 @@
     UIView* vMenuTabBar3;
     bool menuOpen;
     UIView* vMenuBg;
+    UIButton* btnHomeIcon;
+    UIButton* btnHomeText;
+    UIButton* btnMyPlacesIcon;
+    UIButton* btnMyPlacesText;
+    UIButton* btnSettingsIcon;
+    UIButton* btnSettingsText;
+    UIButton* btnAboutIcon;
+    UIButton* btnAboutText;
+    UIButton* btnSendFeedbackIcon;
+    UIButton* btnSendFeedbackText;
+    UIButton* btnHelpUsGrowIcon;
+    UIButton* btnHelpUsGrowText;
+    UIButton* btnUpgradeToPro;
     
+    UIView* vMyPlacesBg;
+    UIButton* btnCloseMyPlaces;
+    UITableView* tblMyPlaces;
 }
 
 

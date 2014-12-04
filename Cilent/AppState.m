@@ -26,10 +26,41 @@
             appState.buttonBgColor = [UIColor darkGrayColor];
             appState.buttonTextColor = [UIColor whiteColor];
             appState.buttonFont = [UIFont fontWithName:@"ArialMT" size:20];
+            appState.mediumFont = [UIFont fontWithName:@"ArialMT" size:15];
             appState.tinyFont = [UIFont fontWithName:@"ArialMT" size:10];
         }
     }
     return appState;
+}
+
+-(NSMutableArray*)getMyPlaces
+{
+    if(!myPlaces)
+    {
+        NSData *myPlacesData = [[NSUserDefaults standardUserDefaults] objectForKey:@"myPlaces"];
+        NSArray *placesArray = [NSKeyedUnarchiver unarchiveObjectWithData:myPlacesData];
+        
+        if(!placesArray)
+        {
+            myPlaces = [[NSMutableArray alloc] init];
+        }
+        else
+        {
+            myPlaces = [placesArray mutableCopy];
+        }
+    }
+    return myPlaces;
+}
+
+-(void)updateMyPlaces:(NSMutableArray*)updatedPlacesArray
+{
+    myPlaces = updatedPlacesArray;
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSData *dataToSave = [NSKeyedArchiver archivedDataWithRootObject:myPlaces];
+    [[NSUserDefaults standardUserDefaults] setObject:dataToSave forKey:@"myPlaces"];
+
+    [defaults synchronize];
 }
 
 @end
