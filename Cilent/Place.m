@@ -31,6 +31,7 @@
     self.latitude = [decoder decodeDoubleForKey:@"latitude"];
     self.longitude = [decoder decodeDoubleForKey:@"longitude"];
     self.name = [decoder decodeObjectForKey:@"name"];
+    self.radiusInMeters = [decoder decodeDoubleForKey:@"radiusInMeters"];
     
     return self;
 }
@@ -40,6 +41,7 @@
     [encoder encodeDouble:self.latitude forKey:@"latitude"];
     [encoder encodeDouble:self.longitude forKey:@"longitude"];
     [encoder encodeObject:self.name forKey:@"name"];
+    [encoder encodeDouble:self.radiusInMeters forKey:@"radiusInMeters"];
 }
 
 

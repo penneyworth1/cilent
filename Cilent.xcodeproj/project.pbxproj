@@ -21,6 +21,7 @@
 		D30ACEF61A2D577B00452B92 /* icon76.png in Resources */ = {isa = PBXBuildFile; fileRef = D30ACEF21A2D577B00452B92 /* icon76.png */; };
 		D30ACEF71A2D577B00452B92 /* icon152.png in Resources */ = {isa = PBXBuildFile; fileRef = D30ACEF31A2D577B00452B92 /* icon152.png */; };
 		D30ACEF81A2D577B00452B92 /* icon120.png in Resources */ = {isa = PBXBuildFile; fileRef = D30ACEF41A2D577B00452B92 /* icon120.png */; };
+		D36056C21A34B56E00D11BF1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36056C11A34B56E00D11BF1 /* AudioToolbox.framework */; };
 		D394945B19FD6D1900E32FFC /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D394945A19FD6D1900E32FFC /* CoreFoundation.framework */; };
 		D396548119F34A800059F2E7 /* AppState.m in Sources */ = {isa = PBXBuildFile; fileRef = D396548019F34A800059F2E7 /* AppState.m */; };
 		D398F30319F4C447002F6340 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D398F30219F4C447002F6340 /* MapViewController.m */; };
@@ -62,6 +63,7 @@
 		D30ACEF21A2D577B00452B92 /* icon76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon76.png; sourceTree = "<group>"; };
 		D30ACEF31A2D577B00452B92 /* icon152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon152.png; sourceTree = "<group>"; };
 		D30ACEF41A2D577B00452B92 /* icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon120.png; sourceTree = "<group>"; };
+		D36056C11A34B56E00D11BF1 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		D394945A19FD6D1900E32FFC /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		D396547F19F34A800059F2E7 /* AppState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppState.h; sourceTree = "<group>"; };
 		D396548019F34A800059F2E7 /* AppState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppState.m; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D36056C21A34B56E00D11BF1 /* AudioToolbox.framework in Frameworks */,
 				D394945B19FD6D1900E32FFC /* CoreFoundation.framework in Frameworks */,
 				D3F2F83A19FD6BAC00636550 /* CoreLocation.framework in Frameworks */,
 				D398F30519F4CB81002F6340 /* MapKit.framework in Frameworks */,
@@ -144,6 +147,7 @@
 		D398F30619F4CBA1002F6340 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D36056C11A34B56E00D11BF1 /* AudioToolbox.framework */,
 				D3B92AC61A0FEA0300E7A775 /* MediaPlayer.framework */,
 				D394945A19FD6D1900E32FFC /* CoreFoundation.framework */,
 				D3F2F83919FD6BAC00636550 /* CoreLocation.framework */,

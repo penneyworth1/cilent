@@ -23,13 +23,10 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    
     tutorialPageViewController = [[TutorialPageViewController alloc] initWithNibName:nil bundle:nil];
     self.navController = [[UINavigationController alloc] initWithRootViewController:tutorialPageViewController];
     [self.navController setNavigationBarHidden:YES animated:YES];
     [[self window] setRootViewController:self.navController];
-    
-    
     
     //Change the color of the dots on the tutorial screens.
     UIPageControl *pageControl = [UIPageControl appearanceWhenContainedIn:[TutorialPageViewController class], nil];
@@ -43,10 +40,21 @@
         locationManager.delegate = self;
         [locationManager requestAlwaysAuthorization];
         locationManager.pausesLocationUpdatesAutomatically = NO;
-        [locationManager startMonitoringSignificantLocationChanges];
+        
+        [locationManager startUpdatingLocation];
+        //[locationManager startMonitoringSignificantLocationChanges];
     }
     
+    [self registerForNotifications];
+    
     return YES;
+}
+
+- (void)registerForNotifications
+{
+    UIUserNotificationType types = UIUserNotificationTypeSound | UIUserNotificationTypeBadge | UIUserNotificationTypeAlert;
+    UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
@@ -62,14 +70,31 @@
         appState.currentLatitude = loc.coordinate.latitude;
         appState.currentLongitude = loc.coordinate.longitude;
         
-        //NSLog(@"location update");
+        NSMutableArray* myPlaces = [appState getMyPlaces];
+        
+        for(Place *place in myPlaces)
+        {
+            double distanceX = appState.currentLatitude - place.latitude;
+            double distanceY = appState.currentLongitude - place.longitude;
+            double distance = sqrt(pow(distanceX,2) + pow(distanceY,2));
+            if(distance < place.radiusInMeters)
+            {
+                
+                UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+                localNotification.fireDate = [[NSDate date]  dateByAddingTimeInterval:0.5];
+                localNotification.alertBody = @"Hey there";
+                localNotification.soundName = UILocalNotificationDefaultSoundName;
+                //localNotification.applicationIconBadgeNumber = 1;
+                [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+            }
+        }
     }
 }
 
-//- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-//{
-//    NSLog(@"%f - %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-//}
+-(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    NSLog(@"notification");
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -85,7 +110,9 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    //Clear the badge
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

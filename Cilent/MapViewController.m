@@ -180,6 +180,7 @@
                 newPlace.latitude = appState.selectedLatitude;
                 newPlace.longitude = appState.selectedLongitude;
                 newPlace.name = trimmedPlaceName;
+                newPlace.radiusInMeters = 50;
                 
                 NSMutableArray* currentPlaces = [appState getMyPlaces];
                 [currentPlaces addObject:newPlace];
