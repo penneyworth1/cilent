@@ -53,42 +53,42 @@
     btnMenuTab = [ViewUtil getButton:-10 :appState.screenHeight-50 :50 :40 :[UIColor whiteColor] :@"" :[UIColor blackColor] :appState.buttonFont :8 :nil :true :0 :0 :0 :0];
     [btnMenuTab addTarget:self action:@selector(menuTabPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnMenuTab];
-    vMenuTabBar1 = [ViewUtil getRoundedBox:0 :5.7 :44 :5.7 :[UIColor blackColor] :2.85 :false];
+    vMenuTabBar1 = [ViewUtil getRoundedBox:0 :5.7 :44 :5.7 :[UIColor grayColor] :2.85 :false];
     [vMenuTabBar1 setUserInteractionEnabled:NO];
     [btnMenuTab addSubview:vMenuTabBar1];
-    vMenuTabBar2 = [ViewUtil getRoundedBox:0 :17.1 :44 :5.7 :[UIColor blackColor] :2.85 :false];
+    vMenuTabBar2 = [ViewUtil getRoundedBox:0 :17.1 :44 :5.7 :[UIColor grayColor] :2.85 :false];
     [vMenuTabBar2 setUserInteractionEnabled:NO];
     [btnMenuTab addSubview:vMenuTabBar2];
-    vMenuTabBar3 = [ViewUtil getRoundedBox:0 :28.6 :44 :5.7 :[UIColor blackColor] :2.85 :false];
+    vMenuTabBar3 = [ViewUtil getRoundedBox:0 :28.6 :44 :5.7 :[UIColor grayColor] :2.85 :false];
     [vMenuTabBar3 setUserInteractionEnabled:NO];
     [btnMenuTab addSubview:vMenuTabBar3];
-    vMenuBg = [ViewUtil getRoundedBox:-240 :0 :240 :3*appState.screenHeight :[UIColor whiteColor] :0 :true];
+    vMenuBg = [ViewUtil getRoundedBox:-240 :0 :240 :3*appState.screenHeight :[UIColor blackColor] :0 :true];
     [self.view addSubview:vMenuBg];
     btnHomeIcon = [ViewUtil getButton:50 :30 :40 :40 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"MenuHome" :false :0 :0 :0 :0];
     [vMenuBg addSubview:btnHomeIcon];
-    btnHomeText = [ViewUtil getButton:100 :30 :120 :40 :[UIColor clearColor] :@"Home" :[UIColor blackColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
+    btnHomeText = [ViewUtil getButton:100 :30 :120 :40 :[UIColor clearColor] :@"Home" :[UIColor grayColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
     [vMenuBg addSubview:btnHomeText];
     btnMyPlacesIcon = [ViewUtil getButton:50 :90 :40 :40 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"Map" :false :0 :0 :0 :0];
     [btnMyPlacesIcon addTarget:self action:@selector(showMyPlacesDialog) forControlEvents:UIControlEventTouchUpInside];
     [vMenuBg addSubview:btnMyPlacesIcon];
-    btnMyPlacesText = [ViewUtil getButton:100 :90 :120 :40 :[UIColor clearColor] :@"My Places" :[UIColor blackColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
+    btnMyPlacesText = [ViewUtil getButton:100 :90 :120 :40 :[UIColor clearColor] :@"My Places" :[UIColor grayColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
     [btnMyPlacesText addTarget:self action:@selector(showMyPlacesDialog) forControlEvents:UIControlEventTouchUpInside];
     [vMenuBg addSubview:btnMyPlacesText];
     btnSettingsIcon = [ViewUtil getButton:50 :150 :40 :40 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"MenuSetting" :false :0 :0 :0 :0];
     [vMenuBg addSubview:btnSettingsIcon];
-    btnSettingsText = [ViewUtil getButton:100 :150 :120 :40 :[UIColor clearColor] :@"Settings" :[UIColor blackColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
+    btnSettingsText = [ViewUtil getButton:100 :150 :120 :40 :[UIColor clearColor] :@"Settings" :[UIColor grayColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
     [vMenuBg addSubview:btnSettingsText];
     btnAboutIcon = [ViewUtil getButton:50 :210 :40 :40 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"MenuAbout" :false :0 :0 :0 :0];
     [vMenuBg addSubview:btnAboutIcon];
-    btnAboutText = [ViewUtil getButton:100 :210 :120 :40 :[UIColor clearColor] :@"About" :[UIColor blackColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
+    btnAboutText = [ViewUtil getButton:100 :210 :120 :40 :[UIColor clearColor] :@"About" :[UIColor grayColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
     [vMenuBg addSubview:btnAboutText];
-    btnSendFeedbackIcon = [ViewUtil getButton:50 :270 :40 :40 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"RightArrow" :false :0 :0 :0 :0];
-    [vMenuBg addSubview:btnSendFeedbackIcon];
-    btnSendFeedbackText = [ViewUtil getButton:100 :270 :120 :40 :[UIColor clearColor] :@"Send Feedback" :[UIColor blackColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
+//    btnSendFeedbackIcon = [ViewUtil getButton:50 :270 :40 :40 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"RightArrow" :false :0 :0 :0 :0];
+//    [vMenuBg addSubview:btnSendFeedbackIcon];
+    btnSendFeedbackText = [ViewUtil getButton:100 :270 :120 :40 :[UIColor clearColor] :@"Send Feedback" :[UIColor grayColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
     [vMenuBg addSubview:btnSendFeedbackText];
-    btnHelpUsGrowIcon = [ViewUtil getButton:50 :330 :40 :40 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"RightArrow" :false :0 :0 :0 :0];
-    [vMenuBg addSubview:btnHelpUsGrowIcon];
-    btnHelpUsGrowText = [ViewUtil getButton:100 :330 :120 :40 :[UIColor clearColor] :@"Help Us Grow" :[UIColor blackColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
+//    btnHelpUsGrowIcon = [ViewUtil getButton:50 :330 :40 :40 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"RightArrow" :false :0 :0 :0 :0];
+//    [vMenuBg addSubview:btnHelpUsGrowIcon];
+    btnHelpUsGrowText = [ViewUtil getButton:100 :330 :120 :40 :[UIColor clearColor] :@"Help Us Grow" :[UIColor grayColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
     [vMenuBg addSubview:btnHelpUsGrowText];
     btnUpgradeToPro = [ViewUtil getButton:50 :390 :180 :40 :[UIColor lightGrayColor] :@"Upgrade To Pro" :[UIColor blackColor] :appState.buttonFont :8 :nil :false :0 :0 :0 :0];
     [vMenuBg addSubview:btnUpgradeToPro];
@@ -104,6 +104,28 @@
     tblMyPlaces.delegate = self;
     tblMyPlaces.dataSource = self;
     [vMyPlacesBg addSubview:tblMyPlaces];
+    
+    //Edit place dialog
+    vEditPlaceBg = [ViewUtil getRoundedBox:appState.screenWidth/2-140 :appState.screenHeight/2-100 :280 :200 :[UIColor whiteColor] :8 :true];
+    vEditPlaceBg.hidden = true;
+    [self.view addSubview:vEditPlaceBg];
+    btnCloseEditPlace = [ViewUtil getButton:242 :10 :28 :28 :[UIColor clearColor] :@"" :appState.buttonTextColor :appState.buttonFont :0 :@"BlackX" :false :0 :0 :0 :0];
+    [btnCloseEditPlace addTarget:self action:@selector(closeEditPlaceDialog) forControlEvents:UIControlEventTouchUpInside];
+    [vEditPlaceBg addSubview:btnCloseEditPlace];
+    tvEditPlaceTitle = [ViewUtil getTextView:10 :10 :200 :40 :[UIColor blackColor] :appState.buttonFont :@"Edit Place"];
+    [vEditPlaceBg addSubview:tvEditPlaceTitle];
+    tvNameLabel = [ViewUtil getTextView:10 :50 :200 :40 :[UIColor blackColor] :appState.buttonFont :@"Name"];
+    [vEditPlaceBg addSubview:tvNameLabel];
+    tvRadiusLabel = [ViewUtil getTextView:10 :90 :200 :40 :[UIColor blackColor] :appState.buttonFont :@"Radius"];
+    [vEditPlaceBg addSubview:tvRadiusLabel];
+    tfEditPlaceName = [ViewUtil getTextField:100 :55 :170 :32 :[UIColor lightGrayColor] :8.0f];
+    [vEditPlaceBg addSubview:tfEditPlaceName];
+    tfEditPlaceRadius = [ViewUtil getTextField:100 :95 :170 :32 :[UIColor lightGrayColor] :8.0f];
+    [vEditPlaceBg addSubview:tfEditPlaceRadius];
+    btnViewPlaceOnMap = [ViewUtil getButton:10 :150 :120 :32 :[UIColor darkGrayColor] :@"View Place On Map" :[UIColor whiteColor] :appState.tinyFont :8 :nil :false :0 :0 :0 :0];
+    [vEditPlaceBg addSubview:btnViewPlaceOnMap];
+    btnDeletePlace = [ViewUtil getButton:150 :150 :120 :32 :[UIColor darkGrayColor] :@"Delete Place" :[UIColor whiteColor] :appState.tinyFont :8 :nil :false :0 :0 :0 :0];
+    [vEditPlaceBg addSubview:btnDeletePlace];
 }
 
 -(void)showMyPlacesDialog
@@ -119,6 +141,20 @@
         vMyPlacesBg.hidden = YES;
     };
     [self performScaleAnimation:vMyPlacesBg :.01 :.01 :completionBlock];
+}
+-(void)showEditPlaceDialog
+{
+    vEditPlaceBg.hidden = NO;
+    vEditPlaceBg.transform = CGAffineTransformScale(CGAffineTransformIdentity, .01, .01);
+    [self performScaleAnimation:vEditPlaceBg :1 :1 : ^void(BOOL finished) {} ];
+}
+-(void)closeEditPlaceDialog
+{
+    void (^completionBlock)(BOOL) = ^void(BOOL finished)
+    {
+        vEditPlaceBg.hidden = YES;
+    };
+    [self performScaleAnimation:vEditPlaceBg :.01 :.01 :completionBlock];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -239,8 +275,8 @@
     if (cell == nil)
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     
-    cell.backgroundView = [[UIView alloc] init];
-    [cell.backgroundView setBackgroundColor:[UIColor clearColor]];
+    //cell.backgroundView = [[UIView alloc] init];
+    //[cell.backgroundView setBackgroundColor:[UIColor clearColor]];
     //[[[cell contentView] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
     if (tableView == tblMyPlaces)
@@ -248,6 +284,7 @@
         Place* currentPlace = (Place*)[[appState getMyPlaces] objectAtIndex:indexPath.row];
         
         cell.textLabel.text = currentPlace.name;
+        
     }
     else
     {
@@ -256,6 +293,12 @@
     
     return cell;
 }
+- (void) tableView: (UITableView *) tableView didSelectRowAtIndexPath: (NSIndexPath *) indexPath
+{
+    [self showEditPlaceDialog];
+
+}
+
 
 
 

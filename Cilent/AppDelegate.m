@@ -41,8 +41,8 @@
         [locationManager requestAlwaysAuthorization];
         locationManager.pausesLocationUpdatesAutomatically = NO;
         
-        [locationManager startUpdatingLocation];
-        //[locationManager startMonitoringSignificantLocationChanges];
+        //[locationManager startUpdatingLocation];
+        [locationManager startMonitoringSignificantLocationChanges];
     }
     
     [self registerForNotifications];
@@ -74,18 +74,27 @@
         
         for(Place *place in myPlaces)
         {
-            double distanceX = appState.currentLatitude - place.latitude;
-            double distanceY = appState.currentLongitude - place.longitude;
-            double distance = sqrt(pow(distanceX,2) + pow(distanceY,2));
+            CLLocation* placeLocation = [[CLLocation alloc] initWithLatitude:place.latitude longitude:place.longitude];
+            double distance = [loc distanceFromLocation:placeLocation];
+            
+            
             if(distance < place.radiusInMeters)
             {
-                
-                UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-                localNotification.fireDate = [[NSDate date]  dateByAddingTimeInterval:0.5];
-                localNotification.alertBody = @"Hey there";
-                localNotification.soundName = UILocalNotificationDefaultSoundName;
-                //localNotification.applicationIconBadgeNumber = 1;
-                [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+                if(!place.currentlyInside)
+                {
+                    place.currentlyInside = true;
+                    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+                    localNotification.fireDate = [[NSDate date] dateByAddingTimeInterval:0.5];
+                    localNotification.alertBody = [NSString stringWithFormat:@"Entering %@",place.name];
+                    localNotification.soundName = UILocalNotificationDefaultSoundName;
+                    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+                    [appState updateMyPlaces:myPlaces];
+                }
+            }
+            else if(place.currentlyInside)
+            {
+                place.currentlyInside = false;
+                [appState updateMyPlaces:myPlaces];
             }
         }
     }

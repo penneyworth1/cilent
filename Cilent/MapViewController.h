@@ -43,15 +43,25 @@
     UIButton* btnSettingsText;
     UIButton* btnAboutIcon;
     UIButton* btnAboutText;
-    UIButton* btnSendFeedbackIcon;
+    //UIButton* btnSendFeedbackIcon;
     UIButton* btnSendFeedbackText;
-    UIButton* btnHelpUsGrowIcon;
+    //UIButton* btnHelpUsGrowIcon;
     UIButton* btnHelpUsGrowText;
     UIButton* btnUpgradeToPro;
     
     UIView* vMyPlacesBg;
     UIButton* btnCloseMyPlaces;
     UITableView* tblMyPlaces;
+    
+    UIView* vEditPlaceBg;
+    UIButton* btnCloseEditPlace;
+    UITextField* tfEditPlaceName;
+    UITextField* tfEditPlaceRadius;
+    UITextView* tvNameLabel;
+    UITextView* tvRadiusLabel;
+    UITextView* tvEditPlaceTitle;
+    UIButton* btnViewPlaceOnMap;
+    UIButton* btnDeletePlace;
 }
 
 

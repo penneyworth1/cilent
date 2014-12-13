@@ -78,6 +78,17 @@
     
     return imageView;
 }
++(UITextView*)getTextView:(CGFloat)x :(CGFloat)y :(CGFloat)width :(CGFloat)height :(UIColor*)textColor :(UIFont*)font :(NSString*)text
+{
+    UITextView* textView = [[UITextView alloc] init];
+    textView.frame = CGRectMake(x, y, width, height);
+    [textView setTextColor:textColor];
+    textView.text = text;
+    [textView setFont:font];
+    [textView setEditable:NO];
+    
+    return textView;
+}
 
 +(UITextField*)getTextField:(CGFloat)x :(CGFloat)y :(CGFloat)width :(CGFloat)height :(UIColor*)bgColor :(CGFloat)cornerRadius
 {

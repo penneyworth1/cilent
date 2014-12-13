@@ -14,5 +14,6 @@
 @property double longitude;
 @property NSString* name;
 @property double radiusInMeters;
+@property bool currentlyInside;
 
 @end
