@@ -34,6 +34,7 @@
     UIView* vMenuTabBar2;
     UIView* vMenuTabBar3;
     bool menuOpen;
+    UIView* vMenuContainer;
     UIView* vMenuBg;
     UIButton* btnHomeIcon;
     UIButton* btnHomeText;
@@ -43,9 +44,9 @@
     UIButton* btnSettingsText;
     UIButton* btnAboutIcon;
     UIButton* btnAboutText;
-    //UIButton* btnSendFeedbackIcon;
+    UIButton* btnSendFeedbackIcon;
     UIButton* btnSendFeedbackText;
-    //UIButton* btnHelpUsGrowIcon;
+    UIButton* btnHelpUsGrowIcon;
     UIButton* btnHelpUsGrowText;
     UIButton* btnUpgradeToPro;
     
@@ -62,6 +63,11 @@
     UITextView* tvEditPlaceTitle;
     UIButton* btnViewPlaceOnMap;
     UIButton* btnDeletePlace;
+    Place* selectedPlace;
+    
+    bool draggingMenu;
+    float lastTouchX;
+    float cumulativeDiffX;
 }
 
 

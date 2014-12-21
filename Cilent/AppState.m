@@ -62,5 +62,9 @@
 
     [defaults synchronize];
 }
+-(void)updateMyPlaces
+{
+    [self updateMyPlaces:myPlaces];
+}
 
 @end

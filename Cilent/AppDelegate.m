@@ -41,8 +41,8 @@
         [locationManager requestAlwaysAuthorization];
         locationManager.pausesLocationUpdatesAutomatically = NO;
         
-        //[locationManager startUpdatingLocation];
-        [locationManager startMonitoringSignificantLocationChanges];
+        [locationManager startUpdatingLocation];
+        //[locationManager startMonitoringSignificantLocationChanges];
     }
     
     [self registerForNotifications];

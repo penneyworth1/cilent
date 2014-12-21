@@ -32,5 +32,6 @@
 +(id)getInstance;
 -(NSMutableArray*)getMyPlaces;
 -(void)updateMyPlaces:(NSMutableArray*)updatedPlacesArray;
+-(void)updateMyPlaces;
 
 @end
