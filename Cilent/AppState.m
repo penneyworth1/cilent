@@ -28,6 +28,8 @@
             appState.buttonFont = [UIFont fontWithName:@"ArialMT" size:20];
             appState.mediumFont = [UIFont fontWithName:@"ArialMT" size:15];
             appState.tinyFont = [UIFont fontWithName:@"ArialMT" size:10];
+            appState.currentLatitude = 0;
+            appState.currentLongitude = 0;
         }
     }
     return appState;

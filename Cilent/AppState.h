@@ -28,6 +28,7 @@
 @property double selectedLatitude;
 @property double selectedLongitude;
 @property NSString* selectedPlaceName;
+@property float bannerHeight;
 
 +(id)getInstance;
 -(NSMutableArray*)getMyPlaces;

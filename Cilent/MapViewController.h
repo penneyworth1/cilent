@@ -12,8 +12,11 @@
 #import "AppState.h"
 #import "ViewUtil.h"
 #import "Place.h"
+#import "GADBannerView.h"
+#import "GADBannerViewDelegate.h"
+#import "PlaceAnnotationView.h"
 
-@interface MapViewController : UIViewController <MKMapViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, GADBannerViewDelegate>
 {
     MKMapView * mainMapView;
     UIActivityIndicatorView *spinner;
@@ -50,9 +53,17 @@
     UIButton* btnHelpUsGrowText;
     UIButton* btnUpgradeToPro;
     
-    UIView* vMyPlacesBg;
+    UIToolbar* vMyPlacesBg;
+    //UIView* vMyPlacesBg;
     UIButton* btnCloseMyPlaces;
     UITableView* tblMyPlaces;
+    
+    //Images
+    UIImage* imgPin;
+    
+    //Custom Callout
+    UIView* vCustomCallout;
+    UIView* vSelectedAnnotationView;
     
     UIView* vEditPlaceBg;
     UIButton* btnCloseEditPlace;
@@ -64,10 +75,15 @@
     UIButton* btnViewPlaceOnMap;
     UIButton* btnDeletePlace;
     Place* selectedPlace;
+    UILabel* lblSelectedPlace;
     
     bool draggingMenu;
     float lastTouchX;
     float cumulativeDiffX;
+    bool firstSearchResultSelected;
+    
+    //Ad Banner
+    GADBannerView *bannerView;
 }
 
 

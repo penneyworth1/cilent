@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
-   type = "1"
+   type = "0"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
@@ -13,9 +13,9 @@
             timestampString = "442301995.487408"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "422"
-            endingLineNumber = "422"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            startingLineNumber = "458"
+            endingLineNumber = "458"
+            landmarkName = "-searchEntered"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -29,25 +29,9 @@
             timestampString = "442301995.487408"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "517"
-            endingLineNumber = "517"
-            landmarkName = "-textField:shouldChangeCharactersInRange:replacementString:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Cilent/MapViewController.m"
-            timestampString = "442301995.487408"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "586"
-            endingLineNumber = "586"
-            landmarkName = "-touchesMoved:withEvent:"
+            startingLineNumber = "457"
+            endingLineNumber = "457"
+            landmarkName = "-searchEntered"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

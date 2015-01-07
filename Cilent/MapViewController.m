@@ -26,7 +26,13 @@
     mainMapView = [[MKMapView alloc] initWithFrame:appState.screenRect];
     mainMapView.delegate = self;
     [self.view addSubview:mainMapView];
+    
+    //Show the annotation for the user's current location.
     mainMapView.showsUserLocation = YES;
+    
+    //Banner - initialize size
+    bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+    appState.bannerHeight = bannerView.frame.size.height;
     
     vSearchBar = [ViewUtil getRoundedBox:11 :30 :appState.screenWidth-21 :48 :[UIColor whiteColor] :4 :true];
     [self.view addSubview:vSearchBar];
@@ -43,7 +49,7 @@
     spinner = [ViewUtil getLoadingSpinner:appState.screenWidth/2-25 :appState.screenHeight/2-25 :50 :50 :[UIColor grayColor] :8];
     request = [[MKLocalSearchRequest alloc] init];
     
-    btnMarkCurrentLocation = [ViewUtil getButton:appState.screenWidth-50 :appState.screenHeight-50 :40 :40 :[UIColor whiteColor] :@"Current Location" :appState.buttonTextColor :appState.buttonFont :8 :@"Arrow" :true :8 :8 :8 :8];
+    btnMarkCurrentLocation = [ViewUtil getButton:appState.screenWidth-50 :appState.screenHeight-50-appState.bannerHeight :40 :40 :[UIColor whiteColor] :@"Current Location" :appState.buttonTextColor :appState.buttonFont :8 :@"Arrow" :true :8 :8 :8 :8];
     [self.view addSubview:btnMarkCurrentLocation];
     [btnMarkCurrentLocation addTarget:self action:@selector(currentLocationButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     
@@ -52,7 +58,7 @@
     [avMarkCurrentLocation textFieldAtIndex:0].delegate = self;
     
     //Menu
-    btnMenuTab = [ViewUtil getButton:-10 :appState.screenHeight-50 :50 :40 :[UIColor whiteColor] :@"" :[UIColor blackColor] :appState.buttonFont :8 :nil :true :0 :0 :0 :0];
+    btnMenuTab = [ViewUtil getButton:-10 :appState.screenHeight-50-appState.bannerHeight :50 :40 :[UIColor whiteColor] :@"" :[UIColor blackColor] :appState.buttonFont :8 :nil :true :0 :0 :0 :0];
     [btnMenuTab addTarget:self action:@selector(menuTabPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnMenuTab];
     vMenuTabBar1 = [ViewUtil getRoundedBox:0 :5.7 :44 :5.7 :[UIColor grayColor] :2.85 :false];
@@ -100,7 +106,8 @@
     [vMenuBg addSubview:btnUpgradeToPro];
     
     //My places dialog
-    vMyPlacesBg = [ViewUtil getRoundedBox:appState.screenWidth/2-100 :appState.screenHeight/2-150 :200 :300 :[UIColor whiteColor] :8 :true];
+    //vMyPlacesBg = [ViewUtil getRoundedBox:appState.screenWidth/2-100 :appState.screenHeight/2-150 :200 :300 :[UIColor whiteColor] :8 :true];
+    vMyPlacesBg = [ViewUtil getRoundedToolBar:appState.screenWidth/2-100 :appState.screenHeight/2-150 :200 :300 :[UIColor whiteColor] :8 :true];
     vMyPlacesBg.hidden = true;
     [self.view addSubview:vMyPlacesBg];
     btnCloseMyPlaces = [ViewUtil getButton:162 :10 :28 :28 :[UIColor clearColor] :@"" :appState.buttonTextColor :appState.buttonFont :0 :@"BlackX" :false :0 :0 :0 :0];
@@ -137,6 +144,43 @@
     btnDeletePlace = [ViewUtil getButton:150 :150 :120 :32 :[UIColor darkGrayColor] :@"Delete Place" :[UIColor whiteColor] :appState.tinyFont :8 :nil :false :0 :0 :0 :0];
     [btnDeletePlace addTarget:self action:@selector(deletePlaceButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [vEditPlaceBg addSubview:btnDeletePlace];
+    
+    //Banner - adding to view controller
+    bannerView.frame = CGRectMake(0, appState.screenHeight, appState.screenWidth, appState.bannerHeight);
+    bannerView.delegate = self;
+    [self.view addSubview:bannerView];
+    bannerView.adUnitID = @"ca-app-pub-3940256099942544/2934735716";
+    bannerView.rootViewController = self;
+    GADRequest *gadRequest = [GADRequest request];
+    [bannerView loadRequest:gadRequest];
+    bannerView.hidden = YES;
+    
+    //Init images
+    imgPin = [UIImage imageNamed:@"Pin.png"];
+    
+    //Custom callout
+    vCustomCallout = [ViewUtil getRoundedBox:0 :0 :200 :80 :[UIColor whiteColor] :5 :true];
+    UIView* vCustomCalloutSeperator = [ViewUtil getRoundedBox:0 :35 :200 :1 :[UIColor lightGrayColor] :1 :false];
+    [vCustomCallout addSubview:vCustomCalloutSeperator];
+    UIImage* imgAddPlace = [UIImage imageNamed:@"AddToList.png"];
+    UIImageView *ivAddPlace = [[UIImageView alloc] initWithImage:imgAddPlace];
+    ivAddPlace.frame = CGRectMake(20, 45, 160, 23);
+    [vCustomCallout addSubview:ivAddPlace];
+    lblSelectedPlace = [[UILabel alloc] init];
+    lblSelectedPlace.text = @"Testing";
+    lblSelectedPlace.textColor = [UIColor blackColor];
+    lblSelectedPlace.textAlignment = NSTextAlignmentCenter;
+    [lblSelectedPlace setFont:[UIFont fontWithName:@"AppleSDGothicNeo-Thin" size:15]];
+    lblSelectedPlace.frame = CGRectMake(5, 1, 190, 35);
+    [vCustomCallout addSubview:lblSelectedPlace];
+    
+    //Zoom in on current location
+    MKCoordinateRegion mapRegion;
+    CLLocation* location = [[CLLocation alloc] initWithLatitude:[appState currentLatitude] longitude:[appState currentLongitude]];
+    mapRegion.center = location.coordinate;
+    mapRegion.span.latitudeDelta = 0.05;
+    mapRegion.span.longitudeDelta = 0.05;
+    [mainMapView setRegion:mapRegion animated: YES];
 }
 
 -(void)showMyPlacesDialog
@@ -193,6 +237,11 @@
     MKCircle *circle = [MKCircle circleWithCenterCoordinate:location.coordinate radius:selectedPlace.radiusInMeters];
     [mainMapView removeOverlays:mainMapView.overlays]; //Remove all overlays.
     [mainMapView addOverlay:circle];
+}
+-(void)showBanner
+{
+    bannerView.hidden = NO;
+    [self performTranlateAnimation:bannerView :0 :-appState.bannerHeight];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -269,25 +318,46 @@
 #pragma mark - MapView delegate methods
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-    static NSString* AnnotationIdentifier = @"AnnotationIdentifier";
-    MKPinAnnotationView* customPinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier] ;
-    customPinView.pinColor = MKPinAnnotationColorRed;
-    customPinView.animatesDrop = YES;
-    customPinView.canShowCallout = YES;
+//    MKPinAnnotationView* customPinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier] ;
+//    customPinView.pinColor = MKPinAnnotationColorRed;
+//    customPinView.animatesDrop = YES;
+//    customPinView.canShowCallout = YES;
     
-    UIButton* rightButton = [ViewUtil getButton:0 :0 :30 :30 :[UIColor greenColor] :@"+" :[UIColor blackColor] :appState.buttonFont :15 :nil :false :0 :0 :0 :0];
-    [rightButton addTarget:self
-                    action:@selector(annotationButtonPressed)
-          forControlEvents:UIControlEventTouchUpInside];
-    customPinView.rightCalloutAccessoryView = rightButton;
+//    UIButton* rightButton = [ViewUtil getButton:0 :0 :30 :30 :[UIColor greenColor] :@"+" :[UIColor blackColor] :appState.buttonFont :15 :nil :false :0 :0 :0 :0];
+//    [rightButton addTarget:self
+//                    action:@selector(annotationButtonPressed)
+//          forControlEvents:UIControlEventTouchUpInside];
+//    customPinView.rightCalloutAccessoryView = rightButton;
     
-    return customPinView;
+    PlaceAnnotationView *annView = [[PlaceAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"AnnotationIdentifier"];
+    //[annView setCanShowCallout:YES];
+    annView.frame = CGRectMake(0, 0, imgPin.size.width, imgPin.size.height);
+    annView.centerOffset = CGPointMake(0.0f, 0.0f);
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:imgPin];
+    [annView addSubview:imageView];
+    
+    return annView;
 }
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
+    NSLog(@"annotation selected");
+    
+    vSelectedAnnotationView = view;
+    vCustomCallout.center = CGPointMake(imgPin.size.width*0.5, -vCustomCallout.bounds.size.height*0.5f);//-vCustomCallout.bounds.size.width*0.5f
+    [view addSubview:vCustomCallout];
+    vCustomCallout.transform = CGAffineTransformScale(CGAffineTransformIdentity, .01, .01);
+    [self performScaleAnimation:vCustomCallout :1 :1 : ^void(BOOL finished) {} ];
+    lblSelectedPlace.text = view.annotation.title;
+    
     appState.selectedLatitude = view.annotation.coordinate.latitude;
     appState.selectedLongitude = view.annotation.coordinate.longitude;
     appState.selectedPlaceName = view.annotation.title;
+}
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
+{
+    //Close custom callout
+    [vCustomCallout removeFromSuperview];
 }
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
@@ -366,6 +436,7 @@
         //NSLog(@"Map Items: %@", response.mapItems);
         
         NSMutableArray *annotations = [NSMutableArray array];
+        firstSearchResultSelected = false; //Only zoom in on the very first result.
         
         [response.mapItems enumerateObjectsUsingBlock:^(MKMapItem *item, NSUInteger idx, BOOL *stop) {
             MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
@@ -384,12 +455,30 @@
             annotation.coordinate = item.placemark.location.coordinate;
             
             [annotations addObject:annotation];
+            
+            if(!firstSearchResultSelected)
+            {
+                firstSearchResultSelected = true;
+                appState.currentLatitude = annotation.coordinate.latitude;
+                appState.currentLongitude = annotation.coordinate.longitude;
+                //Zoom in on selected location
+                MKCoordinateRegion mapRegion;
+                CLLocation* location = [[CLLocation alloc] initWithLatitude:[appState currentLatitude] longitude:[appState currentLongitude]];
+                mapRegion.center = location.coordinate;
+                mapRegion.span.latitudeDelta = 0.1;
+                mapRegion.span.longitudeDelta = 0.1;
+                [mainMapView setRegion:mapRegion animated: YES];
+            }
         }];
         
         [mainMapView removeAnnotations:mainMapView.annotations];
         [mainMapView addAnnotations:annotations];
         if(mainMapView.annotations.count > 0)
-            [mainMapView selectAnnotation:[mainMapView.annotations objectAtIndex:0] animated:YES];
+        {
+            MKPointAnnotation* tempAnnotation = (MKPointAnnotation*)[mainMapView.annotations objectAtIndex:0];
+            
+            [mainMapView selectAnnotation:tempAnnotation animated:YES];
+        }
         
         [spinner removeFromSuperview];
     }];
@@ -467,6 +556,8 @@
     CGPoint point = [(UITouch *)[[touches allObjects] objectAtIndex:0] locationInView:nil];
     lastTouchX = point.x;
     
+    
+    
     [self.view endEditing:YES]; //Dismiss keyboard
     if(menuOpen)
         [self menuTabPressed];
@@ -497,7 +588,7 @@
 }
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    //NSLog(@"%@", NSStringFromSelector(_cmd));
+    
     
     //Snap menu
     if(!menuOpen && cumulativeDiffX > 100)
@@ -517,6 +608,36 @@
 {
     //NSLog(@"%@", NSStringFromSelector(_cmd));
     [super touchesCancelled:touches withEvent:event];
+}
+
+#pragma mark - Admob banner delegate
+/// Called when an ad request loaded an ad.
+- (void)adViewDidReceiveAd:(GADBannerView *)adView
+{
+    [self showBanner];
+}
+/// Called when an ad request failed.
+- (void)adView:(GADBannerView *)adView didFailToReceiveAdWithError:(GADRequestError *)error {
+    NSLog(@"adViewDidFailToReceiveAdWithError: %@", [error localizedDescription]);
+}
+/// Called just before presenting the user a full screen view, such as
+/// a browser, in response to clicking on an ad.
+- (void)adViewWillPresentScreen:(GADBannerView *)adView {
+    NSLog(@"adViewWillPresentScreen");
+}
+/// Called just before dismissing a full screen view.
+- (void)adViewWillDismissScreen:(GADBannerView *)adView {
+    NSLog(@"adViewWillDismissScreen");
+}
+/// Called just after dismissing a full screen view.
+- (void)adViewDidDismissScreen:(GADBannerView *)adView {
+    NSLog(@"adViewDidDismissScreen");
+}
+/// Called just before the application will background or terminate
+/// because the user clicked on an ad that will launch another
+/// application (such as the App Store).
+- (void)adViewWillLeaveApplication:(GADBannerView *)adView {
+    NSLog(@"adViewDidLeaveApplication");
 }
 
 @end

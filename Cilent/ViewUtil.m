@@ -68,6 +68,22 @@
     return vBox;
 }
 
++(UIToolbar*)getRoundedToolBar:(CGFloat)x :(CGFloat)y :(CGFloat)width :(CGFloat)height :(UIColor*)bgColor :(CGFloat)cornerRadius :(bool)dropShadow
+{
+    UIToolbar* vBox = [[UIToolbar alloc] init];
+    //[vBox setBackgroundColor:bgColor];
+    vBox.clipsToBounds = YES;
+    vBox.layer.cornerRadius = cornerRadius;
+    vBox.frame = CGRectMake(x, y, width, height);
+    
+//    if(dropShadow)
+//    {
+//        [ViewUtil addDropShadow:vBox];
+//    }
+    
+    return vBox;
+}
+
 +(UIImageView*)getImageView:(CGFloat)x :(CGFloat)y :(CGFloat)width :(CGFloat)height :(NSString*)imageName
 {
     UIImageView* imageView = [[UIImageView alloc] init];
