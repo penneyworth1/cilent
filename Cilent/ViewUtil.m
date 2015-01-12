@@ -17,7 +17,7 @@
     button.clipsToBounds = YES;
     button.layer.cornerRadius = cornerRadius;
     button.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    button.titleLabel.textAlignment = NSTextAlignmentCenter;
+    
     [button setBackgroundColor:bgColor];
     button.frame = CGRectMake(x, y, width, height);
     
@@ -116,7 +116,7 @@
     textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     textField.layer.cornerRadius = cornerRadius;
     textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    textField.textAlignment = NSTextAlignmentCenter;
+    textField.textAlignment = NSTextAlignmentLeft;
     textField.frame = CGRectMake(x, y, width, height);
     
     return textField;

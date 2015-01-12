@@ -15,11 +15,15 @@
 #import "GADBannerView.h"
 #import "GADBannerViewDelegate.h"
 #import "PlaceAnnotationView.h"
+#import "EditLocation.h"
+#import "MyPlacesViewController.h"
+#import "AboutViewController.h"
+#import "SettingsViewController.h"
 
 @interface MapViewController : UIViewController <MKMapViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, GADBannerViewDelegate>
 {
-    MKMapView * mainMapView;
-    UIActivityIndicatorView *spinner;
+    MKMapView* mainMapView;
+    UIActivityIndicatorView* spinner;
     AppState* appState;
     UIButton* btnMarkCurrentLocation;
     UIAlertView* avMarkCurrentLocation;
@@ -81,6 +85,8 @@
     float lastTouchX;
     float cumulativeDiffX;
     bool firstSearchResultSelected;
+    bool shouldShowCustomCallout;
+    id<MKAnnotation> selectedAnnotation;
     
     //Ad Banner
     GADBannerView *bannerView;

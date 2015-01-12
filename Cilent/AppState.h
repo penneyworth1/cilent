@@ -21,6 +21,7 @@
 @property UIColor* buttonBgColor;
 @property UIColor* buttonTextColor;
 @property UIFont* buttonFont;
+@property UIFont* largeFont;
 @property UIFont* mediumFont;
 @property UIFont* tinyFont;
 @property double currentLatitude;
@@ -28,11 +29,16 @@
 @property double selectedLatitude;
 @property double selectedLongitude;
 @property NSString* selectedPlaceName;
+@property NSString* selectedPlaceAddress;
 @property float bannerHeight;
+@property bool preventAnnotationDeselection;
+@property bool batterySaverOn;
 
 +(id)getInstance;
 -(NSMutableArray*)getMyPlaces;
 -(void)updateMyPlaces:(NSMutableArray*)updatedPlacesArray;
 -(void)updateMyPlaces;
+-(BOOL)getBatterySaverMode;
+-(void)setBatterySaverMode:(BOOL)batterySaverModeOn;
 
 @end

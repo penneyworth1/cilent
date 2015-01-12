@@ -22,6 +22,8 @@
     menuOpen = false;
     cumulativeDiffX = 0;
     draggingMenu = false;
+    shouldShowCustomCallout = true;
+    self.navigationItem.backBarButtonItem.title = @"";
     
     mainMapView = [[MKMapView alloc] initWithFrame:appState.screenRect];
     mainMapView.delegate = self;
@@ -43,6 +45,7 @@
     [btnClearSearch addTarget:self action:@selector(clearSearchPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnClearSearch];
     tfSearch = [ViewUtil getTextField:62 :34 :appState.screenWidth-120 :40 :[UIColor whiteColor] :2.0f];
+    tfSearch.textColor = [UIColor colorWithRed:51.0f/255 green:153.0f/255 blue:153.0f/255 alpha:1.0f];
     tfSearch.delegate = self;
     [self.view addSubview:tfSearch];
     
@@ -74,36 +77,60 @@
     [self.view addSubview:vMenuContainer];
     vMenuBg = [ViewUtil getRoundedBox:0 :0 :240 :3*appState.screenHeight :[UIColor blackColor] :0 :true];
     [vMenuContainer addSubview:vMenuBg];
-    btnHomeIcon = [ViewUtil getButton:50 :30 :40 :40 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"MenuHome" :false :0 :0 :0 :0];
+    
+    btnHomeIcon = [ViewUtil getButton:50 :90 :20 :20 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"MenuHome" :false :0 :0 :0 :0];
     [btnHomeIcon addTarget:self action:@selector(menuTabPressed) forControlEvents:UIControlEventTouchUpInside];
     [vMenuBg addSubview:btnHomeIcon];
-    btnHomeText = [ViewUtil getButton:100 :30 :120 :40 :[UIColor clearColor] :@"Home" :[UIColor grayColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
+    btnHomeText = [ViewUtil getButton:90 :80 :120 :40 :[UIColor clearColor] :@"" :[UIColor grayColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
+    UILabel* lblHomeText = [[UILabel alloc] initWithFrame:CGRectMake(0, 7, 110, 30)];
+    lblHomeText.text = @"Home"; lblHomeText.font = appState.buttonFont; lblHomeText.textColor = [UIColor lightGrayColor];
+    [btnHomeText addSubview:lblHomeText];
     [btnHomeText addTarget:self action:@selector(menuTabPressed) forControlEvents:UIControlEventTouchUpInside];
     [vMenuBg addSubview:btnHomeText];
-    btnMyPlacesIcon = [ViewUtil getButton:50 :90 :40 :40 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"MenuMap" :false :0 :0 :0 :0];
-    [btnMyPlacesIcon addTarget:self action:@selector(showMyPlacesDialog) forControlEvents:UIControlEventTouchUpInside];
+    
+    btnMyPlacesIcon = [ViewUtil getButton:50 :125 :20 :20 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"MenuMap" :false :0 :0 :0 :0];
+    [btnMyPlacesIcon addTarget:self action:@selector(myPlacesPressed) forControlEvents:UIControlEventTouchUpInside];
     [vMenuBg addSubview:btnMyPlacesIcon];
-    btnMyPlacesText = [ViewUtil getButton:100 :90 :120 :40 :[UIColor clearColor] :@"My Places" :[UIColor grayColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
-    [btnMyPlacesText addTarget:self action:@selector(showMyPlacesDialog) forControlEvents:UIControlEventTouchUpInside];
+    btnMyPlacesText = [ViewUtil getButton:90 :115 :120 :40 :[UIColor clearColor] :@"" :[UIColor grayColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
+    [btnMyPlacesText addTarget:self action:@selector(myPlacesPressed) forControlEvents:UIControlEventTouchUpInside];
+    UILabel* lblMyPlacesText = [[UILabel alloc] initWithFrame:CGRectMake(0, 7, 110, 30)];
+    lblMyPlacesText.text = @"My Places"; lblMyPlacesText.font = appState.buttonFont; lblMyPlacesText.textColor = [UIColor lightGrayColor];
+    [btnMyPlacesText addSubview:lblMyPlacesText];
     [vMenuBg addSubview:btnMyPlacesText];
-    btnSettingsIcon = [ViewUtil getButton:50 :150 :40 :40 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"MenuSetting" :false :0 :0 :0 :0];
+    
+    btnSettingsIcon = [ViewUtil getButton:50 :250 :20 :20 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"MenuSetting" :false :0 :0 :0 :0];
     [vMenuBg addSubview:btnSettingsIcon];
-    btnSettingsText = [ViewUtil getButton:100 :150 :120 :40 :[UIColor clearColor] :@"Settings" :[UIColor grayColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
+    btnSettingsText = [ViewUtil getButton:90 :240 :120 :40 :[UIColor clearColor] :@"" :[UIColor grayColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
+    [btnSettingsText addTarget:self action:@selector(settingsTapped) forControlEvents:UIControlEventTouchUpInside];
+    UILabel* lblSettingsText = [[UILabel alloc] initWithFrame:CGRectMake(0, 7, 110, 30)];
+    lblSettingsText.text = @"Settings"; lblSettingsText.font = appState.buttonFont; lblSettingsText.textColor = [UIColor lightGrayColor];
+    [btnSettingsText addSubview:lblSettingsText];
     [vMenuBg addSubview:btnSettingsText];
-    btnAboutIcon = [ViewUtil getButton:50 :210 :40 :40 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"MenuAbout" :false :0 :0 :0 :0];
+    
+    btnAboutIcon = [ViewUtil getButton:50 :285 :20 :20 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"MenuAbout" :false :0 :0 :0 :0];
     [vMenuBg addSubview:btnAboutIcon];
-    btnAboutText = [ViewUtil getButton:100 :210 :120 :40 :[UIColor clearColor] :@"About" :[UIColor grayColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
+    btnAboutText = [ViewUtil getButton:90 :275 :120 :40 :[UIColor clearColor] :@"" :[UIColor grayColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
+    [btnAboutText addTarget:self action:@selector(aboutTapped) forControlEvents:UIControlEventTouchUpInside];
+    UILabel* lblAboutText = [[UILabel alloc] initWithFrame:CGRectMake(0, 7, 110, 30)];
+    lblAboutText.text = @"About"; lblAboutText.font = appState.buttonFont; lblAboutText.textColor = [UIColor lightGrayColor];
+    [btnAboutText addSubview:lblAboutText];
     [vMenuBg addSubview:btnAboutText];
-    btnSendFeedbackIcon = [ViewUtil getButton:50 :270 :40 :40 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"Feedback" :false :0 :0 :0 :0];
+    
+    btnSendFeedbackIcon = [ViewUtil getButton:50 :323 :20 :16 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"email-icon" :false :0 :0 :0 :0];
     [vMenuBg addSubview:btnSendFeedbackIcon];
-    btnSendFeedbackText = [ViewUtil getButton:100 :270 :120 :40 :[UIColor clearColor] :@"Send Feedback" :[UIColor grayColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
+    btnSendFeedbackText = [ViewUtil getButton:90 :310 :220 :40 :[UIColor clearColor] :@"" :[UIColor grayColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
+    [btnSendFeedbackText addTarget:self action:@selector(sendFeedbackTapped) forControlEvents:UIControlEventTouchUpInside];
+    UILabel* lblFeedbackText = [[UILabel alloc] initWithFrame:CGRectMake(0, 7, 210, 30)];
+    lblFeedbackText.text = @"Send Feedback"; lblFeedbackText.font = appState.buttonFont; lblFeedbackText.textColor = [UIColor lightGrayColor];
+    [btnSendFeedbackText addSubview:lblFeedbackText];
     [vMenuBg addSubview:btnSendFeedbackText];
+    
     btnHelpUsGrowIcon = [ViewUtil getButton:50 :330 :40 :40 :[UIColor clearColor] :@"" :[UIColor blackColor] :appState.mediumFont :0 :@"Grow" :false :0 :0 :0 :0];
-    [vMenuBg addSubview:btnHelpUsGrowIcon];
+    //[vMenuBg addSubview:btnHelpUsGrowIcon];
     btnHelpUsGrowText = [ViewUtil getButton:100 :330 :120 :40 :[UIColor clearColor] :@"Help Us Grow" :[UIColor grayColor] :appState.mediumFont :0 :nil :false :0 :0 :0 :0];
-    [vMenuBg addSubview:btnHelpUsGrowText];
+    //[vMenuBg addSubview:btnHelpUsGrowText];
     btnUpgradeToPro = [ViewUtil getButton:50 :390 :180 :40 :[UIColor lightGrayColor] :@"Upgrade To Pro" :[UIColor blackColor] :appState.buttonFont :8 :nil :false :0 :0 :0 :0];
-    [vMenuBg addSubview:btnUpgradeToPro];
+    //[vMenuBg addSubview:btnUpgradeToPro];
     
     //My places dialog
     //vMyPlacesBg = [ViewUtil getRoundedBox:appState.screenWidth/2-100 :appState.screenHeight/2-150 :200 :300 :[UIColor whiteColor] :8 :true];
@@ -159,19 +186,18 @@
     imgPin = [UIImage imageNamed:@"Pin.png"];
     
     //Custom callout
-    vCustomCallout = [ViewUtil getRoundedBox:0 :0 :200 :80 :[UIColor whiteColor] :5 :true];
-    UIView* vCustomCalloutSeperator = [ViewUtil getRoundedBox:0 :35 :200 :1 :[UIColor lightGrayColor] :1 :false];
+    vCustomCallout = [ViewUtil getRoundedBox:0 :0 :200 :100 :[UIColor whiteColor] :5 :true];
+    UIView* vCustomCalloutSeperator = [ViewUtil getRoundedBox:0 :55 :200 :1 :[UIColor lightGrayColor] :1 :false];
     [vCustomCallout addSubview:vCustomCalloutSeperator];
-    UIImage* imgAddPlace = [UIImage imageNamed:@"AddToList.png"];
-    UIImageView *ivAddPlace = [[UIImageView alloc] initWithImage:imgAddPlace];
-    ivAddPlace.frame = CGRectMake(20, 45, 160, 23);
-    [vCustomCallout addSubview:ivAddPlace];
+    UIButton* btnAddPlace = [ViewUtil getButton:20 :65 :160 :23 :[UIColor clearColor] :@"" :nil :nil :0 :@"AddToList.png" :false :0 :0 :0 :0];
+    [btnAddPlace addTarget:self action:@selector(addToPlacesTapped) forControlEvents:UIControlEventTouchUpInside];
+    [vCustomCallout addSubview:btnAddPlace];
     lblSelectedPlace = [[UILabel alloc] init];
     lblSelectedPlace.text = @"Testing";
-    lblSelectedPlace.textColor = [UIColor blackColor];
+    lblSelectedPlace.textColor = [UIColor colorWithRed:51.0f/255 green:153.0f/255 blue:153.0f/255 alpha:1.0f];
     lblSelectedPlace.textAlignment = NSTextAlignmentCenter;
-    [lblSelectedPlace setFont:[UIFont fontWithName:@"AppleSDGothicNeo-Thin" size:15]];
-    lblSelectedPlace.frame = CGRectMake(5, 1, 190, 35);
+    [lblSelectedPlace setFont:[UIFont fontWithName:@"AppleSDGothicNeo-Light" size:20]];
+    lblSelectedPlace.frame = CGRectMake(5, 13, 190, 35);
     [vCustomCallout addSubview:lblSelectedPlace];
     
     //Zoom in on current location
@@ -182,7 +208,45 @@
     mapRegion.span.longitudeDelta = 0.05;
     [mainMapView setRegion:mapRegion animated: YES];
 }
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
 
+-(void)sendFeedbackTapped
+{
+    NSString *url = [@"mailto:maaz.app@gmail.com?subject=Cilent Feedback&body=Input Feedback here" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding ];
+    [[UIApplication sharedApplication]  openURL: [NSURL URLWithString: url]];
+}
+-(void)settingsTapped
+{
+    SettingsViewController *nextViewController = [[SettingsViewController alloc] init];
+    [[self navigationController] pushViewController:nextViewController animated:YES];
+}
+-(void)aboutTapped
+{
+    AboutViewController *nextViewController = [[AboutViewController alloc] init];
+    [[self navigationController] pushViewController:nextViewController animated:YES];
+}
+-(void)addToPlacesTapped
+{
+    Place* newPlace = [[Place alloc] init];
+    newPlace.latitude = appState.selectedLatitude;
+    newPlace.longitude = appState.selectedLongitude;
+    newPlace.name = appState.selectedPlaceName;
+    newPlace.address = appState.selectedPlaceAddress;
+    newPlace.radiusInMeters = 50;
+    
+    EditLocation *editLocation = [[EditLocation alloc] init];
+    editLocation.place = newPlace;
+    [[self navigationController] pushViewController:editLocation animated:YES];
+}
+
+-(void)myPlacesPressed
+{
+    MyPlacesViewController *nextViewController = [[MyPlacesViewController alloc] init];
+    [[self navigationController] pushViewController:nextViewController animated:YES];
+}
 -(void)showMyPlacesDialog
 {
     vMyPlacesBg.hidden = NO;
@@ -242,11 +306,6 @@
 {
     bannerView.hidden = NO;
     [self performTranlateAnimation:bannerView :0 :-appState.bannerHeight];
-}
-
-- (void) viewDidAppear:(BOOL)animated
-{
-    
 }
 
 -(void)menuTabPressed
@@ -318,19 +377,10 @@
 #pragma mark - MapView delegate methods
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-//    MKPinAnnotationView* customPinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier] ;
-//    customPinView.pinColor = MKPinAnnotationColorRed;
-//    customPinView.animatesDrop = YES;
-//    customPinView.canShowCallout = YES;
-    
-//    UIButton* rightButton = [ViewUtil getButton:0 :0 :30 :30 :[UIColor greenColor] :@"+" :[UIColor blackColor] :appState.buttonFont :15 :nil :false :0 :0 :0 :0];
-//    [rightButton addTarget:self
-//                    action:@selector(annotationButtonPressed)
-//          forControlEvents:UIControlEventTouchUpInside];
-//    customPinView.rightCalloutAccessoryView = rightButton;
     
     PlaceAnnotationView *annView = [[PlaceAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"AnnotationIdentifier"];
-    //[annView setCanShowCallout:YES];
+    annView.addressString = [annotation subtitle];
+    [annView setCanShowCallout:NO];
     annView.frame = CGRectMake(0, 0, imgPin.size.width, imgPin.size.height);
     annView.centerOffset = CGPointMake(0.0f, 0.0f);
     
@@ -339,25 +389,40 @@
     
     return annView;
 }
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(PlaceAnnotationView *)view
 {
-    NSLog(@"annotation selected");
+    selectedAnnotation = [mainMapView.selectedAnnotations objectAtIndex:0];
     
-    vSelectedAnnotationView = view;
-    vCustomCallout.center = CGPointMake(imgPin.size.width*0.5, -vCustomCallout.bounds.size.height*0.5f);//-vCustomCallout.bounds.size.width*0.5f
-    [view addSubview:vCustomCallout];
-    vCustomCallout.transform = CGAffineTransformScale(CGAffineTransformIdentity, .01, .01);
-    [self performScaleAnimation:vCustomCallout :1 :1 : ^void(BOOL finished) {} ];
-    lblSelectedPlace.text = view.annotation.title;
-    
-    appState.selectedLatitude = view.annotation.coordinate.latitude;
-    appState.selectedLongitude = view.annotation.coordinate.longitude;
-    appState.selectedPlaceName = view.annotation.title;
+    if(shouldShowCustomCallout)
+    {
+        vSelectedAnnotationView = view;
+        vCustomCallout.center = CGPointMake(imgPin.size.width*0.5, -vCustomCallout.bounds.size.height*0.5f);
+        [view addSubview:vCustomCallout];
+        vCustomCallout.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 0, vCustomCallout.bounds.size.height*0.75f);
+        vCustomCallout.transform = CGAffineTransformScale(vCustomCallout.transform, .01, .01);
+        [self performScaleAnimation:vCustomCallout :1 :1 : ^void(BOOL finished) {} ];
+        lblSelectedPlace.text = view.annotation.title;
+        
+        appState.selectedLatitude = view.annotation.coordinate.latitude;
+        appState.selectedLongitude = view.annotation.coordinate.longitude;
+        appState.selectedPlaceName = view.annotation.title;
+        appState.selectedPlaceAddress = view.addressString;
+    }
+    shouldShowCustomCallout = true;
 }
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
 {
     //Close custom callout
-    [vCustomCallout removeFromSuperview];
+    if(appState.preventAnnotationDeselection) //Must reselect this annotation if the callout did not go away so this method can fire next time.
+    {
+        appState.preventAnnotationDeselection = false; //Make sure the next deselection is not automatically assumed to be invalid due to tapping an annotation buuble (callout).
+        shouldShowCustomCallout = false;
+        [mainMapView selectAnnotation:selectedAnnotation animated:NO];
+    }
+    else
+    {
+        [vCustomCallout removeFromSuperview];
+    }
 }
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
@@ -445,13 +510,19 @@
             NSString* thoroghfare = item.placemark.thoroughfare ? item.placemark.thoroughfare : @"";
             NSString* postalCode = item.placemark.postalCode ? item.placemark.postalCode : @"";
             
+            NSString* subtitleString = @"";
+            if([subThoroghfare length] > 0)
+                subtitleString = [NSString stringWithFormat:@"%@",subThoroghfare];
+            if([thoroghfare length] > 0)
+                subtitleString = [NSString stringWithFormat:@"%@ %@, ",subtitleString,thoroghfare];
+            
+            
             annotation.title = item.name;
-            annotation.subtitle = [NSString stringWithFormat:@"%@ %@\n%@ %@\n%@",
-                                   subThoroghfare,
-                                   thoroghfare,
-                                   postalCode,
+            annotation.subtitle = [NSString stringWithFormat:@"%@%@, %@, %@",
+                                   subtitleString,
                                    item.placemark.locality,
-                                   item.placemark.country];
+                                   item.placemark.country,
+                                   postalCode];
             annotation.coordinate = item.placemark.location.coordinate;
             
             [annotations addObject:annotation];
@@ -556,8 +627,6 @@
     CGPoint point = [(UITouch *)[[touches allObjects] objectAtIndex:0] locationInView:nil];
     lastTouchX = point.x;
     
-    
-    
     [self.view endEditing:YES]; //Dismiss keyboard
     if(menuOpen)
         [self menuTabPressed];
@@ -588,8 +657,6 @@
 }
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    
-    
     //Snap menu
     if(!menuOpen && cumulativeDiffX > 100)
     {

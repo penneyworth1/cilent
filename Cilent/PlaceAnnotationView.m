@@ -13,9 +13,11 @@
 - (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent*)event
 {
     UIView* hitView = [super hitTest:point withEvent:event];
+    AppState* appState = [AppState getInstance];
+    appState.preventAnnotationDeselection = false;
     if (hitView != nil)
     {
-        [self.superview bringSubviewToFront:self];
+        appState.preventAnnotationDeselection = true;
     }
     return hitView;
 }
@@ -24,6 +26,7 @@
 {
     CGRect rect = self.bounds;
     BOOL isInside = CGRectContainsPoint(rect, point);
+    
     if(!isInside)
     {
         for (UIView *view in self.subviews)
@@ -37,5 +40,6 @@
     }
     return isInside;
 }
+
 
 @end

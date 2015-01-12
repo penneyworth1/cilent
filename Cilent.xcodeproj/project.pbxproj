@@ -31,11 +31,18 @@
 		D3854D741A5CCD6B0097D897 /* email-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D3854D701A5CCD6B0097D897 /* email-icon.png */; };
 		D3854D761A5CCD750097D897 /* AddToList.png in Resources */ = {isa = PBXBuildFile; fileRef = D3854D751A5CCD750097D897 /* AddToList.png */; };
 		D3854D791A5CF7980097D897 /* PlaceAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3854D781A5CF7980097D897 /* PlaceAnnotationView.m */; };
+		D3854D7D1A5F91380097D897 /* EditLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = D3854D7C1A5F91380097D897 /* EditLocation.m */; };
 		D394945B19FD6D1900E32FFC /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D394945A19FD6D1900E32FFC /* CoreFoundation.framework */; };
 		D396548119F34A800059F2E7 /* AppState.m in Sources */ = {isa = PBXBuildFile; fileRef = D396548019F34A800059F2E7 /* AppState.m */; };
 		D398F30319F4C447002F6340 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D398F30219F4C447002F6340 /* MapViewController.m */; };
 		D398F30519F4CB81002F6340 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D398F30419F4CB81002F6340 /* MapKit.framework */; };
 		D398F30919F757E3002F6340 /* ViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D398F30819F757E3002F6340 /* ViewUtil.m */; };
+		D3992CCD1A61BDA200EBAB49 /* EditRadiusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3992CCC1A61BDA200EBAB49 /* EditRadiusViewController.m */; };
+		D3992CD01A61F00F00EBAB49 /* EditNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3992CCF1A61F00F00EBAB49 /* EditNameViewController.m */; };
+		D3992CD31A620A0600EBAB49 /* MyPlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3992CD21A620A0600EBAB49 /* MyPlacesViewController.m */; };
+		D3992CD71A621BE600EBAB49 /* PlaceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3992CD61A621BE600EBAB49 /* PlaceTableViewCell.m */; };
+		D3992CDA1A62D4C300EBAB49 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3992CD91A62D4C300EBAB49 /* AboutViewController.m */; };
+		D3992CDD1A62D7ED00EBAB49 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3992CDC1A62D7ED00EBAB49 /* SettingsViewController.m */; };
 		D3A0A23D19EAD864005E3133 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A0A23C19EAD864005E3133 /* main.m */; };
 		D3A0A24019EAD864005E3133 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A0A23F19EAD864005E3133 /* AppDelegate.m */; };
 		D3A0A24819EAD864005E3133 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3A0A24719EAD864005E3133 /* Images.xcassets */; };
@@ -85,6 +92,8 @@
 		D3854D751A5CCD750097D897 /* AddToList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddToList.png; sourceTree = "<group>"; };
 		D3854D771A5CF7980097D897 /* PlaceAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceAnnotationView.h; sourceTree = "<group>"; };
 		D3854D781A5CF7980097D897 /* PlaceAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceAnnotationView.m; sourceTree = "<group>"; };
+		D3854D7B1A5F91380097D897 /* EditLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditLocation.h; sourceTree = "<group>"; };
+		D3854D7C1A5F91380097D897 /* EditLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditLocation.m; sourceTree = "<group>"; };
 		D394945A19FD6D1900E32FFC /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		D396547F19F34A800059F2E7 /* AppState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppState.h; sourceTree = "<group>"; };
 		D396548019F34A800059F2E7 /* AppState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppState.m; sourceTree = "<group>"; };
@@ -93,6 +102,18 @@
 		D398F30419F4CB81002F6340 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D398F30719F757E3002F6340 /* ViewUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewUtil.h; sourceTree = "<group>"; };
 		D398F30819F757E3002F6340 /* ViewUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewUtil.m; sourceTree = "<group>"; };
+		D3992CCB1A61BDA200EBAB49 /* EditRadiusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditRadiusViewController.h; sourceTree = "<group>"; };
+		D3992CCC1A61BDA200EBAB49 /* EditRadiusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditRadiusViewController.m; sourceTree = "<group>"; };
+		D3992CCE1A61F00F00EBAB49 /* EditNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditNameViewController.h; sourceTree = "<group>"; };
+		D3992CCF1A61F00F00EBAB49 /* EditNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditNameViewController.m; sourceTree = "<group>"; };
+		D3992CD11A620A0600EBAB49 /* MyPlacesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPlacesViewController.h; sourceTree = "<group>"; };
+		D3992CD21A620A0600EBAB49 /* MyPlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPlacesViewController.m; sourceTree = "<group>"; };
+		D3992CD51A621BE600EBAB49 /* PlaceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceTableViewCell.h; sourceTree = "<group>"; };
+		D3992CD61A621BE600EBAB49 /* PlaceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceTableViewCell.m; sourceTree = "<group>"; };
+		D3992CD81A62D4C300EBAB49 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		D3992CD91A62D4C300EBAB49 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		D3992CDB1A62D7ED00EBAB49 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		D3992CDC1A62D7ED00EBAB49 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		D3A0A23719EAD864005E3133 /* Cilent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cilent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3A0A23B19EAD864005E3133 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3A0A23C19EAD864005E3133 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -173,6 +194,28 @@
 			name = Assets;
 			sourceTree = "<group>";
 		};
+		D3854D7A1A5F91060097D897 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D3992CD41A621BC400EBAB49 /* TableCells */,
+				D3A0A26319EB2325005E3133 /* TutorialIntro */,
+				D398F30019F4C0E0002F6340 /* Map */,
+				D3854D7B1A5F91380097D897 /* EditLocation.h */,
+				D3854D7C1A5F91380097D897 /* EditLocation.m */,
+				D3992CCB1A61BDA200EBAB49 /* EditRadiusViewController.h */,
+				D3992CCC1A61BDA200EBAB49 /* EditRadiusViewController.m */,
+				D3992CCE1A61F00F00EBAB49 /* EditNameViewController.h */,
+				D3992CCF1A61F00F00EBAB49 /* EditNameViewController.m */,
+				D3992CD11A620A0600EBAB49 /* MyPlacesViewController.h */,
+				D3992CD21A620A0600EBAB49 /* MyPlacesViewController.m */,
+				D3992CD81A62D4C300EBAB49 /* AboutViewController.h */,
+				D3992CD91A62D4C300EBAB49 /* AboutViewController.m */,
+				D3992CDB1A62D7ED00EBAB49 /* SettingsViewController.h */,
+				D3992CDC1A62D7ED00EBAB49 /* SettingsViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		D398F30019F4C0E0002F6340 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +238,15 @@
 				3851300003BAA506AD877A13 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D3992CD41A621BC400EBAB49 /* TableCells */ = {
+			isa = PBXGroup;
+			children = (
+				D3992CD51A621BE600EBAB49 /* PlaceTableViewCell.h */,
+				D3992CD61A621BE600EBAB49 /* PlaceTableViewCell.m */,
+			);
+			name = TableCells;
 			sourceTree = "<group>";
 		};
 		D3A0A22E19EAD864005E3133 = {
@@ -222,6 +274,7 @@
 		D3A0A23919EAD864005E3133 /* Cilent */ = {
 			isa = PBXGroup;
 			children = (
+				D3854D7A1A5F91060097D897 /* ViewControllers */,
 				D3A0A23E19EAD864005E3133 /* AppDelegate.h */,
 				D3A0A23F19EAD864005E3133 /* AppDelegate.m */,
 				D396547F19F34A800059F2E7 /* AppState.h */,
@@ -229,9 +282,7 @@
 				D3EC26851A2D66E8001ED16F /* Entities */,
 				D3A0A24719EAD864005E3133 /* Images.xcassets */,
 				D3A0A24919EAD864005E3133 /* LaunchScreen.xib */,
-				D398F30019F4C0E0002F6340 /* Map */,
 				D3A0A23A19EAD864005E3133 /* Supporting Files */,
-				D3A0A26319EB2325005E3133 /* TutorialIntro */,
 				D398F30719F757E3002F6340 /* ViewUtil.h */,
 				D398F30819F757E3002F6340 /* ViewUtil.m */,
 			);
@@ -446,13 +497,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3A0A26619EB25BB005E3133 /* TutorialChildViewController.m in Sources */,
+				D3992CD01A61F00F00EBAB49 /* EditNameViewController.m in Sources */,
 				D3854D791A5CF7980097D897 /* PlaceAnnotationView.m in Sources */,
+				D3992CDD1A62D7ED00EBAB49 /* SettingsViewController.m in Sources */,
 				D3A0A24019EAD864005E3133 /* AppDelegate.m in Sources */,
+				D3992CD31A620A0600EBAB49 /* MyPlacesViewController.m in Sources */,
 				D396548119F34A800059F2E7 /* AppState.m in Sources */,
+				D3992CDA1A62D4C300EBAB49 /* AboutViewController.m in Sources */,
 				D398F30319F4C447002F6340 /* MapViewController.m in Sources */,
 				D3A0A23D19EAD864005E3133 /* main.m in Sources */,
+				D3854D7D1A5F91380097D897 /* EditLocation.m in Sources */,
 				D3A0A26219EB1EA6005E3133 /* TutorialPageViewController.m in Sources */,
 				D398F30919F757E3002F6340 /* ViewUtil.m in Sources */,
+				D3992CD71A621BE600EBAB49 /* PlaceTableViewCell.m in Sources */,
+				D3992CCD1A61BDA200EBAB49 /* EditRadiusViewController.m in Sources */,
 				D3EC26881A2D672C001ED16F /* Place.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -591,7 +649,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0bf77165-9a1b-4eb8-b651-5d20a58a29fa";
+				PROVISIONING_PROFILE = "249203d8-d5f7-4be8-8f2c-8f3cf773d192";
 			};
 			name = Release;
 		};

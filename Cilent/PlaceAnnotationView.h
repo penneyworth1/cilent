@@ -7,7 +7,14 @@
 //
 
 #import <MapKit/MapKit.h>
+#import "AppState.h"
 
 @interface PlaceAnnotationView : MKAnnotationView
+{
+    
+}
+
+@property bool preventSelectionChange;
+@property NSString* addressString;
 
 @end

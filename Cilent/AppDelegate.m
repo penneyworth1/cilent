@@ -18,6 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    appState = [AppState getInstance];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
@@ -41,13 +43,28 @@
         [locationManager requestAlwaysAuthorization];
         locationManager.pausesLocationUpdatesAutomatically = NO;
         
-        [locationManager startUpdatingLocation];
-        //[locationManager startMonitoringSignificantLocationChanges];
+        if([appState getBatterySaverMode])
+            [self startUpdatingSignificantLocationChanges];
+        else
+            [self startUpdatingAccurateLocationChanges];
     }
     
     [self registerForNotifications];
     
     return YES;
+}
+
+-(void)startUpdatingAccurateLocationChanges
+{
+    [locationManager stopUpdatingLocation];
+    [locationManager startUpdatingLocation];
+    updatingAccurateLocations = true;
+}
+-(void)startUpdatingSignificantLocationChanges
+{
+    [locationManager stopUpdatingLocation];
+    [locationManager startMonitoringSignificantLocationChanges];
+    updatingAccurateLocations = false;
 }
 
 - (void)registerForNotifications
@@ -64,7 +81,16 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    AppState* appState = [AppState getInstance];
+    if(updatingAccurateLocations && appState.batterySaverOn)
+    {
+        [self startUpdatingSignificantLocationChanges];
+    }
+    else if(!updatingAccurateLocations && !appState.batterySaverOn)
+    {
+        [self startUpdatingAccurateLocationChanges];
+    }
+    
+    
     for(CLLocation* loc in locations)
     {
         appState.currentLatitude = loc.coordinate.latitude;

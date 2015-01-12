@@ -25,14 +25,30 @@
             appState.landscapeScreenRect = CGRectMake(0, 0, appState.screenRect.size.height, appState.screenRect.size.width);
             appState.buttonBgColor = [UIColor darkGrayColor];
             appState.buttonTextColor = [UIColor whiteColor];
-            appState.buttonFont = [UIFont fontWithName:@"ArialMT" size:20];
-            appState.mediumFont = [UIFont fontWithName:@"ArialMT" size:15];
-            appState.tinyFont = [UIFont fontWithName:@"ArialMT" size:10];
+            appState.largeFont = [UIFont fontWithName:@"AppleSDGothicNeo-Light" size:22];
+            appState.buttonFont = [UIFont fontWithName:@"AppleSDGothicNeo-Light" size:20];
+            appState.mediumFont = [UIFont fontWithName:@"AppleSDGothicNeo-Light" size:15];
+            appState.tinyFont = [UIFont fontWithName:@"AppleSDGothicNeo-Light" size:10];
             appState.currentLatitude = 0;
             appState.currentLongitude = 0;
+            appState.preventAnnotationDeselection = false;
         }
     }
     return appState;
+}
+
+-(BOOL)getBatterySaverMode
+{
+    BOOL batterySaverOn = [[NSUserDefaults standardUserDefaults] boolForKey:@"batterySaver"];
+    self.batterySaverOn = batterySaverOn;
+    return batterySaverOn;
+}
+-(void)setBatterySaverMode:(BOOL)batterySaverModeOn
+{
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:batterySaverModeOn forKey:@"batterySaver"];
+    [defaults synchronize];
+    self.batterySaverOn = batterySaverModeOn;
 }
 
 -(NSMutableArray*)getMyPlaces

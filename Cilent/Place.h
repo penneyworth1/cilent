@@ -13,7 +13,9 @@
 @property double latitude;
 @property double longitude;
 @property NSString* name;
+@property NSString* address;
 @property double radiusInMeters;
 @property bool currentlyInside;
+@property bool isSaved;
 
 @end

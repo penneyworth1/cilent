@@ -15,7 +15,7 @@
     self = [super init];
     if (self)
     {
-        
+        self.isSaved = false;
     }
     return self;
 }
@@ -31,7 +31,9 @@
     self.latitude = [decoder decodeDoubleForKey:@"latitude"];
     self.longitude = [decoder decodeDoubleForKey:@"longitude"];
     self.name = [decoder decodeObjectForKey:@"name"];
+    self.address = [decoder decodeObjectForKey:@"address"];
     self.radiusInMeters = [decoder decodeDoubleForKey:@"radiusInMeters"];
+    self.isSaved = true;
     
     return self;
 }
@@ -41,6 +43,7 @@
     [encoder encodeDouble:self.latitude forKey:@"latitude"];
     [encoder encodeDouble:self.longitude forKey:@"longitude"];
     [encoder encodeObject:self.name forKey:@"name"];
+    [encoder encodeObject:self.address forKey:@"address"];
     [encoder encodeDouble:self.radiusInMeters forKey:@"radiusInMeters"];
 }
 
