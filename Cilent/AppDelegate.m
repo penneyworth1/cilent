@@ -32,7 +32,7 @@
     
     //Change the color of the dots on the tutorial screens.
     UIPageControl *pageControl = [UIPageControl appearanceWhenContainedIn:[TutorialPageViewController class], nil];
-    pageControl.pageIndicatorTintColor = [UIColor blackColor];
+    pageControl.pageIndicatorTintColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.3f];
     pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
     
     if([CLLocationManager locationServicesEnabled])

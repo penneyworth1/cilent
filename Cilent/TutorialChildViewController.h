@@ -11,6 +11,6 @@
 @interface TutorialChildViewController : UIViewController
 
 @property NSInteger index;
-@property UILabel* lblScreenNumber;
+@property UILabel* lblPageText;
 
 @end

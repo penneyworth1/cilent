@@ -21,7 +21,6 @@
     
     pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     pageController.view.frame = CGRectMake(0, 0, appState.screenWidth, appState.screenHeight-100);
-    [self.view setBackgroundColor:[UIColor colorWithRed:.4f green:.89f blue:.8f alpha:1.0f]];
     pageController.dataSource = self;
     TutorialChildViewController *initialViewController = [self viewControllerAtIndex:0];
     NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
@@ -30,14 +29,22 @@
     [[self view] addSubview:[pageController view]];
     [pageController didMoveToParentViewController:self];
     
+    //Resize bg image
+    UIImage * targetImage = [UIImage imageNamed:@"Background.jpg"];
+    UIGraphicsBeginImageContextWithOptions(self.view.frame.size, NO, 0.f);
+    [targetImage drawInRect:CGRectMake(0.f, 0.f, self.view.frame.size.width, self.view.frame.size.height)];
+    UIImage * resultImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:resultImage]];
+    
     btnGetStarted = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [[self view] addSubview:btnGetStarted];
-    [btnGetStarted setBackgroundColor:[UIColor darkGrayColor]];
-    [btnGetStarted setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btnGetStarted setBackgroundColor:[UIColor whiteColor]];
+    [btnGetStarted setTitleColor:[UIColor colorWithRed:51.0f/255 green:153.0f/255 blue:153.0f/255 alpha:1.0f] forState:UIControlStateNormal];
     [btnGetStarted setTitle:@"Get Started" forState:UIControlStateNormal];
-    [btnGetStarted.titleLabel setFont:[UIFont fontWithName:@"ArialMT" size:20]];
+    [btnGetStarted.titleLabel setFont:[UIFont fontWithName:@"Arial-BoldMT" size:30]];
     btnGetStarted.clipsToBounds = YES;
-    btnGetStarted.layer.cornerRadius = 20.0f;
+    btnGetStarted.layer.cornerRadius = 5.0f;
     btnGetStarted.frame = CGRectMake(10, appState.screenHeight-90, appState.screenWidth-20, 80);
     [btnGetStarted addTarget:self action:@selector(getStartedButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -63,7 +70,7 @@
 {
     NSUInteger index = [(TutorialChildViewController *)viewController index];
     index++;
-    if (index == 5)
+    if (index == 4)
     {
         return nil;
     }
@@ -80,7 +87,7 @@
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
 {
     // The number of items reflected in the page indicator.
-    return 5;
+    return 4;
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
@@ -96,15 +103,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

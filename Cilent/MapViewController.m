@@ -45,6 +45,7 @@
     [btnClearSearch addTarget:self action:@selector(clearSearchPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnClearSearch];
     tfSearch = [ViewUtil getTextField:62 :34 :appState.screenWidth-120 :40 :[UIColor whiteColor] :2.0f];
+    tfSearch.returnKeyType = UIReturnKeySearch;
     tfSearch.textColor = [UIColor colorWithRed:51.0f/255 green:153.0f/255 blue:153.0f/255 alpha:1.0f];
     tfSearch.delegate = self;
     [self.view addSubview:tfSearch];
@@ -592,7 +593,6 @@
         if(resultString.length > 0 && resultString.length < 4)
             selectedPlace.radiusInMeters = [resultString doubleValue];
     }
-    
     return YES;
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -600,6 +600,11 @@
     [self.view endEditing:YES]; //Dismiss keyboard
     [self searchButtonPressed];
     return YES;
+}
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if(menuOpen)
+        [self menuTabPressed];
 }
 
 

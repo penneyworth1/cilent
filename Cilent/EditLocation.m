@@ -23,7 +23,7 @@
     self.navigationItem.rightBarButtonItem = anotherButton;
     
     UIView* vBackground = [[UIView alloc] initWithFrame:appState.screenRect];
-    vBackground.backgroundColor = [UIColor lightGrayColor];
+    vBackground.backgroundColor = [ViewUtil colorWithHexString:@"3FCCE5"];
     [self.view addSubview:vBackground];
     
     UIView* vSelectedPlaceInfo = [[UIView alloc] initWithFrame:CGRectMake(0, 64, appState.screenWidth, 80)];
@@ -114,6 +114,7 @@
     AppState* appState = [AppState getInstance];
     NSMutableArray* currentPlaces = [appState getMyPlaces];
     [currentPlaces removeObject:self.place];
+    [appState updateMyPlaces:currentPlaces];
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)radiusButtonPressed

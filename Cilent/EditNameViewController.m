@@ -28,7 +28,7 @@
     self.navigationItem.rightBarButtonItem = anotherButton;
     
     UIView* vBackground = [[UIView alloc] initWithFrame:appState.screenRect];
-    vBackground.backgroundColor = [UIColor lightGrayColor];
+    vBackground.backgroundColor = [ViewUtil colorWithHexString:@"3FCCE5"];
     [self.view addSubview:vBackground];
     
     UIView* vTextBackground = [ViewUtil getRoundedBox:10 :74 :appState.screenWidth-20 :40 :[UIColor whiteColor] :4.0f :false];

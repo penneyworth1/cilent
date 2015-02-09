@@ -26,7 +26,7 @@
     self.navigationItem.leftBarButtonItem = btnBack;
     
     UIView* vBackground = [[UIView alloc] initWithFrame:appState.screenRect];
-    vBackground.backgroundColor = [UIColor lightGrayColor];
+    vBackground.backgroundColor = [ViewUtil colorWithHexString:@"3FCCE5"];
     [self.view addSubview:vBackground];
 }
 

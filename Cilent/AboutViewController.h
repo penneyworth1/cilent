@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AppState.h"
+#import "ViewUtil.h"
 
 @interface AboutViewController : UIViewController
 

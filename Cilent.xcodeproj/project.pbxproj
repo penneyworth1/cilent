@@ -25,6 +25,7 @@
 		D34326A01A4280CD00EDA25C /* Feedback.png in Resources */ = {isa = PBXBuildFile; fileRef = D343269E1A4280CD00EDA25C /* Feedback.png */; };
 		D34326A11A4280CD00EDA25C /* Grow.png in Resources */ = {isa = PBXBuildFile; fileRef = D343269F1A4280CD00EDA25C /* Grow.png */; };
 		D36056C21A34B56E00D11BF1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36056C11A34B56E00D11BF1 /* AudioToolbox.framework */; };
+		D36A124A1A88F3A900259E21 /* Background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D36A12491A88F3A900259E21 /* Background.jpg */; };
 		D3854D711A5CCD6B0097D897 /* Pin.png in Resources */ = {isa = PBXBuildFile; fileRef = D3854D6D1A5CCD6B0097D897 /* Pin.png */; };
 		D3854D721A5CCD6B0097D897 /* plus-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D3854D6E1A5CCD6B0097D897 /* plus-icon.png */; };
 		D3854D731A5CCD6B0097D897 /* hamburger-menu-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D3854D6F1A5CCD6B0097D897 /* hamburger-menu-icon.png */; };
@@ -85,6 +86,7 @@
 		D343269E1A4280CD00EDA25C /* Feedback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Feedback.png; sourceTree = "<group>"; };
 		D343269F1A4280CD00EDA25C /* Grow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Grow.png; sourceTree = "<group>"; };
 		D36056C11A34B56E00D11BF1 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D36A12491A88F3A900259E21 /* Background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Background.jpg; sourceTree = "<group>"; };
 		D3854D6D1A5CCD6B0097D897 /* Pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pin.png; sourceTree = "<group>"; };
 		D3854D6E1A5CCD6B0097D897 /* plus-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus-icon.png"; sourceTree = "<group>"; };
 		D3854D6F1A5CCD6B0097D897 /* hamburger-menu-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hamburger-menu-icon.png"; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 		D30ACED41A2BB0F800452B92 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				D36A12491A88F3A900259E21 /* Background.jpg */,
 				D3854D751A5CCD750097D897 /* AddToList.png */,
 				D3854D6D1A5CCD6B0097D897 /* Pin.png */,
 				D3854D6E1A5CCD6B0097D897 /* plus-icon.png */,
@@ -428,6 +431,7 @@
 				D34326A01A4280CD00EDA25C /* Feedback.png in Resources */,
 				D3854D711A5CCD6B0097D897 /* Pin.png in Resources */,
 				D34326991A3CA1C600EDA25C /* MenuAbout.png in Resources */,
+				D36A124A1A88F3A900259E21 /* Background.jpg in Resources */,
 				D34326961A3CA1C600EDA25C /* MenuSetting.png in Resources */,
 				D343269B1A3CA1C600EDA25C /* BlackX.png in Resources */,
 				D3A0A24B19EAD864005E3133 /* LaunchScreen.xib in Resources */,

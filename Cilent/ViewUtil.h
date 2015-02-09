@@ -11,6 +11,7 @@
 
 @interface ViewUtil : NSObject
 
++(UIColor*)colorWithHexString:(NSString*)hex;
 +(UIButton*)getButton:(CGFloat)x :(CGFloat)y :(CGFloat)width :(CGFloat)height :(UIColor*)bgColor :(NSString*)text :(UIColor*)textColor :(UIFont*)font :(CGFloat)cornerRadius :(NSString*)bgImageName :(bool)dropShadow :(float)imageInsetTop :(float)imageInsetLeft :(float)imageInsetBottom :(float)imageInsetRight;
 +(UIActivityIndicatorView*)getLoadingSpinner:(CGFloat)x :(CGFloat)y :(CGFloat)width :(CGFloat)height :(UIColor*)bgColor :(CGFloat)cornerRadius;
 +(UIView*)getRoundedBox:(CGFloat)x :(CGFloat)y :(CGFloat)width :(CGFloat)height :(UIColor*)bgColor :(CGFloat)cornerRadius :(bool)dropShadow;
